@@ -9,6 +9,6 @@ By default WordPress creates a page for each of your attachments. This is bad be
 
 ## How it works
 
-This plugin works by automatically setting all attachment slugs to an UUID v4, so they won't conflict with your pages. It will also automatically set 404 status if a media page is accessed.
+This plugin works by automatically setting all attachment slugs to an unique id, so they won't conflict with your pages. The plugin will also set 404 status code if a media page is accessed.
 
 You can also mangle any existing attachment slugs so they won't cause any issues in the future.
