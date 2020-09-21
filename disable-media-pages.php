@@ -11,15 +11,18 @@ class DisableMediaPages {
         add_filter('redirect_canonical', [$this, 'set_404'], 0);
         add_filter('attachment_link', [$this, 'change_attachment_link'], 10, 2);
         add_filter('admin_enqueue_scripts', [$this, 'admin_enqueue_scripts']);
-        // Add settings link on the plugin page
         add_filter(
             'plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links']
         );
-
-        // Add plugin to WordPress admin menu
         add_action('admin_menu', [$this, 'admin_menu']);
-
+        add_action('rest_api_init', [$this, 'rest_api_init']);
     }
+
+    public static function debug(...$messages) {
+    if (defined('WP_DEBUG') && WP_DEBUG === true) {
+        error_log(print_r($messages, true));
+    }
+}
 
     function set_404()
     {
@@ -41,7 +44,7 @@ class DisableMediaPages {
 
     function unique_slug($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug) {
         if ($post_type === 'attachment') {
-            return str_replace('-', '', wp_generate_uuid4());
+            return $this->generate_uuid_v4();
         }
         return $slug;
     }
@@ -54,14 +57,19 @@ class DisableMediaPages {
         $path = plugin_dir_path(__FILE__);
 
         wp_enqueue_script(
-            'csf-script',
+            'dmp-script',
             "{$url}dist/script.js",
             [],
             WP_DEBUG ? md5_file($path . 'dist/script.js') : $version
         );
+        
+        wp_localize_script('dmp-script', 'disable_media_pages', [
+            'root' => rest_url(),
+            'token' => wp_create_nonce('wp_rest'),
+        ]);
 
         wp_enqueue_style(
-            'csf-style',
+            'dmp-style',
             "{$url}dist/style.css",
             [],
             WP_DEBUG ? md5_file($path . 'dist/style.css') : $version
@@ -97,6 +105,70 @@ class DisableMediaPages {
     public function settings_page() {
         echo '<div id="disable-media-pages"><disable-media-pages></disable-media-pages></div>';
     }
+
+    public function rest_api_init()
+    {
+        register_rest_route('disable-media-pages/v1', '/get_all_attachments', [
+            'methods' => 'GET',
+            'callback' => [$this, 'rest_api_get_all_attachments'],
+            'permission_callback' => function () {
+                return current_user_can('manage_options');
+            },
+        ]);
+        register_rest_route('disable-media-pages/v1', '/process/(?P<id>\d+)', [
+            'methods' => 'POST',
+            'callback' => [$this, 'rest_api_process_attachment'],
+            'args' => ['id'],
+            'permission_callback' => function () {
+                return current_user_can('manage_options');
+            },
+        ]);
+    }
+
+    public function rest_api_get_all_attachments(WP_REST_Request $data)
+    {
+        $query = new WP_Query([
+            'post_type' => 'attachment',
+            'post_status' => 'inherit',
+            'fields' => 'ids',
+            'posts_per_page' => -1,
+        ]);
+
+        $json = [
+            'posts' => $query->posts,
+            'total' => $query->post_count,
+        ];
+
+        return new WP_REST_Response($json);
+    }
+
+    public function rest_api_process_attachment(WP_REST_Request $data)
+    {
+        $attachment = get_post($data->get_param('id'));
+        $slug = $attachment->post_name;
+
+        $is_uuid = (bool) preg_match('/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/', $slug);
+
+        if (!$is_uuid) {
+            $new_attachment = [
+                'ID' => $attachment->ID,
+                'post_name' => $this->generate_uuid_v4(),
+            ];
+
+            wp_update_post($new_attachment);
+        }
+
+        return new WP_REST_Response([]);
+    }
+
+    /**
+     * @return string|string[]
+     */
+    public function generate_uuid_v4()
+    {
+        return str_replace('-', '', wp_generate_uuid4());
+    }
+
 }
 
 $disable_media_pages = new DisableMediaPages();

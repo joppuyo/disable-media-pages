@@ -2,6 +2,14 @@
   .disable-media-pages__progress-bar {
     width: 100%;
     height: 6px;
+    background-color: #e9ecef;
+    margin-bottom: 16px;
+  }
+  .disable-media-pages__progress-bar-inner {
+    height: 6px;
+    background-color: #007cba;
+  }
+  .disable-media-pages__progress-bar--indeterminate {
     background-color: #007cba;
     background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,
             transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%,
@@ -10,7 +18,6 @@
             transparent);
     -webkit-animation: disable-media-pages-progress-bar-stripes 1s linear infinite;
     animation: disable-media-pages-progress-bar-stripes 1s linear infinite;
-    margin-bottom: 16px;
     background-size: 1rem 1rem;
   }
 }
