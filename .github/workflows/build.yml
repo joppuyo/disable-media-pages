@@ -15,10 +15,13 @@ jobs:
 
     - name: Build
       run: npx webpack -p
-   
+  
+    - name: Remove
+      run: rm -fr .github node_modules .nvmrc .editorconfig .gitignore .prettierrc.js .git
+  
     - name: Zip
       run: rsync -av * disable-media-pages && zip -r disable-media-pages.zip disable-media-pages
-
+        
     - uses: actions/upload-artifact@master
       with:
         name: disable-media-pages
