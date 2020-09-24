@@ -1,5 +1,7 @@
 # Disable Media Pages
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-media-pages/Build?logo=github)](https://github.com/joppuyo/disable-media-pages/actions?query=workflow%3ABuild)
+
 Disable "attachment" pages for WordPress media.
 
 By default WordPress creates a page for each of your attachments. This is bad because:
