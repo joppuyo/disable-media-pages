@@ -1,0 +1,25 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Install dependencies
+      run: nvm use && npm install
+
+    - name: Build
+      run: npx webpack -p
+   
+    - name: Zip
+      run: rsync -av * disable-media-pages && zip -r disable-media-pages.zip disable-media-pages
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: disable-media-pages
+        path: disable-media-pages.zip
