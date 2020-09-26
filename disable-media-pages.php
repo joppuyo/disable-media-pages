@@ -2,7 +2,7 @@
 
 /*
  * Plugin name: Disable Media Pages
- * Description: WordPress plugin to disable "attachment" pages for WordPress media.
+ * Description: Plugin to disable "attachment" pages for WordPress media.
  * Author: Johannes Siipola
  * Author URI: https://siipo.la
  * Version: 1.0.0
