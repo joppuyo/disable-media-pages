@@ -24,5 +24,5 @@ You can also mangle any existing attachment slugs so they won't cause any issues
 ## Installation
 
 * Download latest version from the [GitHub releases](https://github.com/joppuyo/disable-media-pages/releases)
-* Unzip the plugin into your wp-content/plugins directory or upload it through the WordPress admin panel
-* Activate the plugin on your Plugins page
+* Upload the zip through the WordPress admin panel or unzip it and copy it into your wp-content/plugins directory
+* Activate the plugin on your plugins page in the WordPress admin panel
