@@ -2,10 +2,27 @@
 
 /*
  * Plugin name: Disable Media Pages
+ * Description: WordPress plugin to disable "attachment" pages for WordPress media.
+ * Author: Johannes Siipola
+ * Author URI: https://siipo.la
+ * Version: 1.0.0
+ * License: GPL v2 or later
+ * Text Domain: disable-media-pages
  */
+
+require __DIR__ . '/vendor/autoload.php';
 
 class DisableMediaPages {
     public function __construct() {
+
+        $update_checker = Puc_v4_Factory::buildUpdateChecker(
+            'https://github.com/joppuyo/disable-media-pages',
+            __FILE__,
+            'disable-media-pages'
+        );
+
+        $update_checker->getVcsApi()->enableReleaseAssets();
+
         add_filter('wp_unique_post_slug', [$this, 'unique_slug'], 10, 6);
         add_filter('template_redirect', [$this, 'set_404']);
         add_filter('redirect_canonical', [$this, 'set_404'], 0);

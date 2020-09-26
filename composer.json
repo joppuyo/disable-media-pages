@@ -1,0 +1,14 @@
+{
+    "name": "joppuyo/disable-media-pages",
+    "description": "WordPress plugin to disable \"attachment\" pages for WordPress media.",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Johannes Siipola",
+            "email": "johannes@siipo.la"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^4.10"
+    }
+}
