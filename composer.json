@@ -10,5 +10,10 @@
     ],
     "require": {
         "yahnis-elsts/plugin-update-checker": "^4.10"
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.0"
+        }
     }
 }
