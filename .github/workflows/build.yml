@@ -1,0 +1,40 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: nvm
+      shell: bash -l {0}
+      run: nvm install
+      
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npx webpack -p
+  
+    - name: Remove
+      run: rm -fr .github node_modules .nvmrc .editorconfig .gitignore .prettierrc.js .git
+  
+    - name: Zip
+      run: rsync -av * disable-media-pages && zip -r disable-media-pages.zip disable-media-pages
+        
+    - uses: actions/upload-artifact@master
+      with:
+        name: disable-media-pages
+        path: disable-media-pages.zip
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: disable-media-pages.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
