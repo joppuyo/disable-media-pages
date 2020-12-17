@@ -135,7 +135,13 @@ class DisableMediaPages {
         register_rest_route('disable-media-pages/v1', '/process/(?P<id>\d+)', [
             'methods' => 'POST',
             'callback' => [$this, 'rest_api_process_attachment'],
-            'args' => ['id'],
+            'args' => [
+                'id' => [
+                    'validate_callback' => function( $param ) {
+                        return is_numeric( $param );
+                    },
+                ],
+            ],
             'permission_callback' => function () {
                 return current_user_can('manage_options');
             },
