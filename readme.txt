@@ -2,7 +2,7 @@
 
 Tags: remove, disable, media, attachment, image, permalink
 Contributors: joppuyo
-Requires at least: 5.5
+Requires at least: 5.0
 Tested up to: 5.6
 Requires PHP: 7.0
 License: GPLv2 or later
