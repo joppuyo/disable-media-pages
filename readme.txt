@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 Disable "attachment" pages for WordPress media.
 
@@ -45,7 +45,11 @@ First of all, not everyone uses Yoast SEO. More importantly, while Yoast SEO can
 
 ## Changelog
 
-### 1.0.2
+### 1.0.3 (2020-12-31)
+* Fix: Change required WordPress version correctly to 5.0
+* Fix: Optimize autoloader
+
+### 1.0.2 (2020-12-31)
 * Change: Release on WordPress plugin directory
 * Change: Changes to internal plugin structure
 * Fix: Make plugin translatable
