@@ -2,6 +2,10 @@
 
 namespace NPX;
 
+use WP_Query;
+use WP_REST_Request;
+use WP_REST_Response;
+
 class DisableMediaPages
 {
     private static $instance = null;
