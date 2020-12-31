@@ -104,6 +104,16 @@ class DisableMediaPages
             [
                 'root' => rest_url(),
                 'token' => wp_create_nonce('wp_rest'),
+                'i18n' => [
+                    'plugin_title' => __('Disable Media Pages', 'disable-media-pages'),
+                    'mangle_title' => __('Mangle existing media slugs', 'disable-media-pages'),
+                    'mangle_description' => __("This tool will let you change all existing post slugs to unique ids so they won't conflict with your page titles", 'disable-media-pages'),
+                    'mangle_button' => __('Start mangling process', 'disable-media-pages'),
+                    'mangle_progress_title' => __('Mangling existing media slugs...', 'disable-media-pages'),
+                    'mangle_progress_description' => __('Progress %d%%', 'disable-media-pages'),
+                    'mangle_success_title' => __('All media slugs mangled', 'disable-media-pages'),
+                    'mangle_success_button' => __('Start over', 'disable-media-pages'),
+                ],
             ]
         );
 

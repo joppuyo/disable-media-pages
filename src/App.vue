@@ -1,21 +1,21 @@
 <template>
   <div class="wrap disable-media-pages">
-    <h1>Disable Media Pages</h1>
+    <h1>{{ i18n.plugin_title }}</h1>
 
     <div class="card" v-if="!fetchingAllPosts && !manglingPosts && !complete">
-      <h2 class="title">Mangle existing media slugs</h2>
+      <h2 class="title">{{ i18n.mangle_title }}</h2>
       <p>
-        This tools will let you change all existing post slugs to unique ids so they won't conflict with your page titles
+        {{ i18n.mangle_description }}
       </p>
       <p>
-      <button class="button button-primary" v-on:click="fetchAllPosts">Start mangling process</button>
+      <button class="button button-primary" v-on:click="fetchAllPosts">{{ i18n.mangle_button }}</button>
       </p>
     </div>
 
     <div class="card" v-if="fetchingAllPosts">
-      <h2 class="title">Mangling existing media slugs...</h2>
+      <h2 class="title">{{ i18n.mangle_progress_title }}</h2>
 
-      <p>Progress 0%</p>
+      <p>{{ sprintf(i18n.mangle_progress_description, 0) }}</p>
 
 
       <div class="disable-media-pages__progress-bar disable-media-pages__progress-bar--indeterminate"></div>
@@ -23,10 +23,9 @@
     </div>
 
     <div class="card" v-if="manglingPosts">
-      <h2 class="title">Mangling existing media slugs...</h2>
+      <h2 class="title">{{ i18n.mangle_progress_title }}</h2>
 
-      <p>Progress {{progress}}%</p>
-
+      <p>{{ sprintf(i18n.mangle_progress_description, progress) }}</p>
 
       <div class="disable-media-pages__progress-bar">
         <div class="disable-media-pages__progress-bar-inner" v-bind:style="{
@@ -38,9 +37,9 @@
     </div>
 
     <div class="card" v-if="complete">
-      <h2 class="title">All media slugs mangled</h2>
+      <h2 class="title">{{ i18n.mangle_success_title }}</h2>
 
-      <p>Progress 100%</p>
+      <p>{{ sprintf(i18n.mangle_progress_description, 100) }}</p>
 
 
       <div class="disable-media-pages__progress-bar">
@@ -51,7 +50,7 @@
       </div>
 
       <p>
-        <button class="button button-primary" v-on:click="complete = false">Start over</button>
+        <button class="button button-primary" v-on:click="complete = false">{{ i18n.mangle_success_button }}</button>
       </p>
 
     </div>
@@ -61,6 +60,7 @@
 
 <script>
 import axios from 'axios';
+import { sprintf } from 'sprintf-js';
 export default {
   data: function () {
     return {
@@ -71,6 +71,7 @@ export default {
       processed: 0,
       currentIndex: 0,
       complete: false,
+      i18n: window.disable_media_pages.i18n,
     }
   },
   computed: {
@@ -79,6 +80,9 @@ export default {
     }
   },
   methods: {
+    sprintf(...args) {
+      return sprintf(...args)
+    },
     fetchAllPosts() {
       this.fetchingAllPosts = true;
       const options = {
