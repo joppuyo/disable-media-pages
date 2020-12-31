@@ -81,6 +81,16 @@ class DisableMediaPages
         $url = plugin_dir_url($this->plugin_file);
         $path = plugin_dir_path($this->plugin_file);
 
+        $current_screen = get_current_screen();
+
+        if (empty($current_screen)) {
+            return;
+        }
+
+        if ($current_screen->id !== 'settings_page_disable-media-pages') {
+            return;
+        }
+
         wp_enqueue_script(
             'dmp-script',
             "{$url}dist/script.js",
