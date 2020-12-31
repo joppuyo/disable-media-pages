@@ -1,0 +1,17 @@
+/.github
+/node_modules
+/tests
+/.git
+/.wordpress-org
+.editorconfig
+.gitignore
+.prettierrc.js
+.distignore
+.env.testing.example
+codeception.dist.yml
+composer.lock
+docker-compose.yml
+Dockerfile
+package-lock.json
+webpack.config.js
+wp-su.sh
