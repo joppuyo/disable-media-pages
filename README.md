@@ -1,7 +1,7 @@
 # Disable Media Pages
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-media-pages/Build?logo=github)](https://github.com/joppuyo/disable-media-pages/actions?query=workflow%3ABuild)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/joppuyo/disable-media-pages)](https://github.com/joppuyo/disable-media-pages/releases)
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/disable-media-pages?logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
 
 Disable "attachment" pages for WordPress media.
 
@@ -23,6 +23,6 @@ You can also mangle any existing attachment slugs so they won't cause any issues
 
 ## Installation
 
-* Download latest version from the [GitHub releases](https://github.com/joppuyo/disable-media-pages/releases)
+* Download latest version on [wordpress.org](https://wordpress.org/plugins/disable-media-pages/)
 * Upload the zip through the WordPress admin panel or unzip it and copy it into your wp-content/plugins directory
 * Activate the plugin on your plugins page in the WordPress admin panel
