@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 Disable "attachment" pages for WordPress media.
 
@@ -44,6 +44,9 @@ Go to the plugins page, scroll to "Disable Media Pages", click "Settings". This 
 First of all, not everyone uses Yoast SEO. More importantly, while Yoast SEO can fix the duplicate content issue, it does not help with issue of media files reserving slugs for pages.
 
 ## Changelog
+
+### 1.0.4 (2021-01-02)
+* Change: Add icon
 
 ### 1.0.3 (2020-12-31)
 * Fix: Change required WordPress version correctly to 5.0
