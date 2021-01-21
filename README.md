@@ -8,11 +8,11 @@ Disable "attachment" pages for WordPress media.
 By default WordPress creates a page for each of your attachments. This is can be undesirable because:
 
 1. These are pages that don't have any content, except an image, so they provide little value and can negatively affect your SEO.
-2. They can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, a page like `https://example.com/contact` is automatically created. If you then try to create a page named Contact, the URL for that page will be `https://example.com/contact-2` which isn't that great.
+2. They can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
 
 ## How it works
 
-This plugin works by automatically setting all attachment slugs to an unique id, so they won't conflict with your pages. The plugin will also set 404 status code if a media page is accessed.
+This plugin works by automatically setting all attachment slugs to an unique id, so they won't conflict with your pages. If an attachment page is accessed, the plugin will set a 404 status code and display the "page not found" template.
 
 You can also mangle any existing attachment slugs so they won't cause any issues in the future.
 
