@@ -1,0 +1,84 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        wp_version: ['5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7']
+      fail-fast: false
+    env:
+      WP_VERSION: ${{ matrix.wp_version }}
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.0
+          extensions: zip
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Set Node Version
+        shell: bash -l {0}
+        run: nvm install
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build
+        run: npx webpack -p
+
+      - name: Setup docker
+        run: docker-compose up -d
+
+      - name: Create config file
+        run: touch .env.testing
+
+      - name: Check running containers
+        run: docker ps -a
+
+      - name: Run test suite
+        run: |
+          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html disable-media-pages_wordpress_1 bash -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html && wp core install --url=wordpress --title=example --admin_user=admin --admin_email=example@example.com && wp option delete core_updater.lock"
+          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html disable-media-pages_wordpress_1 bash -c "wp core update --version=$WP_VERSION --force"
+          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html/wp-content/plugins/disable-media-pages -e WP_ROOT_FOLDER -e TEST_SITE_WP_ADMIN_PATH -e TEST_SITE_DB_NAME -e TEST_SITE_DB_HOST -e TEST_SITE_DB_USER -e TEST_SITE_DB_PASSWORD -e TEST_SITE_DB_PASSWORD -e TEST_SITE_TABLE_PREFIX -e TEST_SITE_WP_URL -e TEST_SITE_WP_DOMAIN -e TEST_SITE_ADMIN_EMAIL -e TEST_SITE_ADMIN_USERNAME -e TEST_SITE_ADMIN_PASSWORD -e CHROMEDRIVER_HOST -e CHROMEDRIVER_PORT -e WP_VERSION disable-media-pages_wordpress_1 bash -c './vendor/bin/codecept run acceptance --fail-fast --debug'
+        env:
+          WP_ROOT_FOLDER: /var/www/html
+          TEST_SITE_WP_ADMIN_PATH: /wp-admin
+          TEST_SITE_DB_NAME: exampledb
+          TEST_SITE_DB_HOST: db
+          TEST_SITE_DB_USER: exampleuser
+          TEST_SITE_DB_PASSWORD: examplepass
+          TEST_SITE_TABLE_PREFIX: wp_
+          TEST_SITE_WP_URL: http://wordpress
+          TEST_SITE_WP_DOMAIN: wordpress
+          TEST_SITE_ADMIN_EMAIL: example@example.com
+          TEST_SITE_ADMIN_USERNAME: admin
+          TEST_SITE_ADMIN_PASSWORD: admin
+          CHROMEDRIVER_HOST: chromedriver
+          CHROMEDRIVER_PORT: 9515
+
+      - name: Upload artifact
+        if: failure()
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: Test output ${{ matrix.wp_version }}
+          path: tests/_output/
