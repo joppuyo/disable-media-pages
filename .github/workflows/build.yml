@@ -15,7 +15,7 @@ jobs:
       run: nvm install
       
     - name: Install composer dependencies
-      run: composer install --optimize-autoloader
+      run: composer install --optimize-autoloader --no-dev
       
     - name: Install npm dependencies
       run: npm install
