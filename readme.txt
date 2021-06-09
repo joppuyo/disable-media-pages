@@ -49,9 +49,17 @@ The unique id is an UUIDv4, without dashes.
 
 ### Can I restore the attachment page slugs after mangling?
 
-Not right now, but this feature is planned in a future version of the plugin.
+Not right now, but this feature is [planned](https://github.com/joppuyo/disable-media-pages/issues/4) in a future version of the plugin.
+
+### Can I find this plugin on GitHub?
+
+Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media-pages)
 
 ## Changelog
+
+### 1.0.5 (2021-06-09)
+* Fix: Bump tested to @ 5.7
+* Fix: Add acceptance tests
 
 ### 1.0.4 (2021-01-02)
 * Change: Add icon
