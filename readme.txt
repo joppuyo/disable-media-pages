@@ -58,7 +58,7 @@ Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media
 ## Changelog
 
 ### 1.0.5 (2021-06-09)
-* Fix: Bump tested to @ 5.7
+* Fix: Bump tested up to @ 5.7
 * Fix: Add acceptance tests
 
 ### 1.0.4 (2021-01-02)
