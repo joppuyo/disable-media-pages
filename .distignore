@@ -15,3 +15,5 @@ Dockerfile
 package-lock.json
 webpack.config.js
 wp-su.sh
+.nvmrc
+.env.testing
