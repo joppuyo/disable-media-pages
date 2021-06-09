@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 
 Disable "attachment" pages for WordPress media.
 
@@ -56,6 +56,9 @@ Not right now, but this feature is [planned](https://github.com/joppuyo/disable-
 Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media-pages)
 
 ## Changelog
+
+### 1.0.6 (2021-06-09)
+* Fix: Fix issue with deployment
 
 ### 1.0.5 (2021-06-09)
 * Fix: Bump tested up to @ 5.7
