@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
 Stable tag: 1.0.6
 
-Remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and attachment permalinks.
+Remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
 ## Description
 
