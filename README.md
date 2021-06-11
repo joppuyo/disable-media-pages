@@ -27,3 +27,25 @@ You can also mangle any existing attachment slugs so they won't cause any issues
 * Download latest version on [wordpress.org](https://wordpress.org/plugins/disable-media-pages/)
 * Upload the zip through the WordPress admin panel or unzip it and copy it into your wp-content/plugins directory
 * Activate the plugin on your plugins page in the WordPress admin panel
+
+## Frequently Asked Questions
+
+### How to mangle existing attachment slugs?
+
+Go to the plugins page, scroll to "Disable Media Pages", click "Settings". This will show you a wizard to mangle existing attachment slugs.
+
+### Why not just use Yoast SEO? It has a feature to redirect attachment pages to parent
+
+First of all, not everyone uses Yoast SEO. More importantly, while Yoast SEO can fix the duplicate content issue, it does not help with issue of media files reserving slugs for pages.
+
+### What if I want to redirect attachment pages to parent page instead?
+
+Instead of displaying a 404 HTTP error, some people recommend you to redirect attachment pages to the parent page instead. I think this can be a good short-term solution if the attachment pages have been indexed by Google and you want to preserve SEO ranking for these URLs. There's a plenty of plugins on the plugin directory that let you to do that. In my opinion returning the 404 error is the correct long-term solution and if you are launching a new site, it's best to simply disable these pages so they won't ever end up in Google index.
+
+### What kind of unique id is used?
+
+The unique id is an UUIDv4, without dashes.
+
+### Can I restore the attachment page slugs after mangling?
+
+Not right now, but this feature is [planned](https://github.com/joppuyo/disable-media-pages/issues/4) in a future version of the plugin.
