@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
 Stable tag: 1.0.6
 
-Disable "attachment" pages for WordPress media.
+Remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and attachment permalinks.
 
 ## Description
 
@@ -42,6 +42,10 @@ Go to the plugins page, scroll to "Disable Media Pages", click "Settings". This 
 ### Why not just use Yoast SEO? It has a feature to redirect attachment pages to parent
 
 First of all, not everyone uses Yoast SEO. More importantly, while Yoast SEO can fix the duplicate content issue, it does not help with issue of media files reserving slugs for pages.
+
+### What if I want to redirect attachment pages to parent page instead?
+
+Instead of displaying a 404 HTTP error, some people recommend you to redirect attachment pages to the parent page instead. I think this can be a good short-term solution if the attachment pages have been indexed by Google and you want to preserve SEO ranking for these URLs. There's a plenty of plugins on the plugin directory that let you to do that. In my opinion returning the 404 error is the correct long-term solution and if you are launching a new site, it's best to simply disable these pages so they won't ever end up in Google index.
 
 ### What kind of unique id is used?
 
