@@ -62,6 +62,7 @@ Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media
 ## Changelog
 
 ### 1.0.7 (2021-06-14)
+* Fix: Update dependencies
 * Fix: Update FAQ
 * Fix: Tweak icon
 
