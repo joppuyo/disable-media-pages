@@ -3,11 +3,20 @@ name: Test
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        wp_version: ['5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8']
+        wp_docker_tag:
+          - 5.0-php7.0-apache
+          - 5.1-php7.1-apache
+          - 5.2-php7.1-apache
+          - 5.3-php7.1-apache
+          - 5.4-php7.2-apache
+          - 5.5-php7.2-apache
+          - 5.6-php7.2-apache
+          - 5.7-php7.3-apache
+          - 5.8-php7.3-apache
       fail-fast: false
     env:
       WP_VERSION: ${{ matrix.wp_version }}
@@ -57,8 +66,7 @@ jobs:
 
       - name: Run test suite
         run: |
-          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html disable-media-pages_wordpress_1 bash -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html && wp core install --url=wordpress --title=example --admin_user=admin --admin_email=example@example.com && wp option delete core_updater.lock"
-          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html disable-media-pages_wordpress_1 bash -c "wp core update --version=$WP_VERSION --force"
+          npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html disable-media-pages_wordpress_1 bash -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html && wp core install --url=wordpress --title=example --admin_user=admin --admin_email=example@example.com"
           npx wait-on http://localhost/wp-login.php --verbose --timeout 60000 && docker exec -w /var/www/html/wp-content/plugins/disable-media-pages -e WP_ROOT_FOLDER -e TEST_SITE_WP_ADMIN_PATH -e TEST_SITE_DB_NAME -e TEST_SITE_DB_HOST -e TEST_SITE_DB_USER -e TEST_SITE_DB_PASSWORD -e TEST_SITE_DB_PASSWORD -e TEST_SITE_TABLE_PREFIX -e TEST_SITE_WP_URL -e TEST_SITE_WP_DOMAIN -e TEST_SITE_ADMIN_EMAIL -e TEST_SITE_ADMIN_USERNAME -e TEST_SITE_ADMIN_PASSWORD -e CHROMEDRIVER_HOST -e CHROMEDRIVER_PORT -e WP_VERSION disable-media-pages_wordpress_1 bash -c './vendor/bin/codecept run acceptance --fail-fast --debug'
         env:
           WP_ROOT_FOLDER: /var/www/html
