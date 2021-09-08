@@ -19,7 +19,7 @@ jobs:
           - 5.8-php7.3-apache
       fail-fast: false
     env:
-      WP_VERSION: ${{ matrix.wp_version }}
+      WP_DOCKER_TAG: ${{ matrix.wp_docker_tag }}
     steps:
       - uses: actions/checkout@v1
 
