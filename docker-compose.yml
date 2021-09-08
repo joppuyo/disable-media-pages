@@ -3,7 +3,11 @@ version: '3.1'
 services:
 
   wordpress:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        wp_docker_tag: '$WP_DOCKER_TAG'
     restart: always
     ports:
       - 80:80
