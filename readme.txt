@@ -27,6 +27,10 @@ This plugin works by automatically setting all attachment slugs to an unique id,
 
 You can also mangle any existing attachment slugs so they won't cause any issues in the future.
 
+### Thanks
+
+Special thanks to Greg Schoppe for [his reseach](https://gschoppe.com/wordpress/disable-attachment-pages/) and inspiration that helped a lot with developing this plugin.
+
 ## Installation
 
 1. Install the plugin from your WordPress dashboard
