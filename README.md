@@ -54,3 +54,7 @@ The unique id is an UUIDv4, without dashes.
 ### Can I restore the attachment page slugs after mangling?
 
 Not right now, but this feature is [planned](https://github.com/joppuyo/disable-media-pages/issues/4) in a future version of the plugin.
+
+## Thanks
+
+Special thanks to Greg Schoppe for [his reseach](https://gschoppe.com/wordpress/disable-attachment-pages/) and inspiration that helped a lot with developing this plugin.
