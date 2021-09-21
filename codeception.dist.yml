@@ -18,3 +18,9 @@ extensions:
         - Codeception\Command\GenerateWPXMLRPC
 params:
     - .env.testing
+coverage:
+    enabled: true
+    remote: false
+    c3_url: '%C3_URL%'
+    include:
+        - /src/*.php
