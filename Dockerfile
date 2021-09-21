@@ -1,7 +1,7 @@
 # https://github.com/conetix/docker-wordpress-wp-cli/blob/master/Dockerfile
 
 ARG wp_docker_tag
-ARG xdebug_version
+ARG XDEBUG_VERSION
 
 FROM wordpress:$wp_docker_tag
 
