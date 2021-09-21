@@ -24,3 +24,4 @@ coverage:
     c3_url: '%C3_URL%'
     include:
         - /src/*.php
+        - disable-media-pages.php
