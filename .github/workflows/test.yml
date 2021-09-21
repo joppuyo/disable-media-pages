@@ -27,7 +27,7 @@ jobs:
          - wp_docker_tag: 5.8-php7.3-apache
            xdebug_version: xdebug-2.7.2
          - wp_docker_tag: 5.8-php7.4-apache
-           xdebug_version: xdebug-2.7.2
+           xdebug_version: xdebug-3.0.4
          - wp_docker_tag: 5.8-php8.0-apache
            xdebug_version: xdebug-3.0.4
       fail-fast: false
@@ -105,3 +105,7 @@ jobs:
         with:
           name: Test output ${{ matrix.wp_version }}
           path: tests/_output/
+      - uses: codecov/codecov-action@v2
+        with:
+          files: ./tests/_output/coverage.xml
+          verbose: true
