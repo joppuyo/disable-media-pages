@@ -2,6 +2,7 @@
 
 ARG wp_docker_tag
 ARG XDEBUG_VERSION
+ENV XDEBUG_VERSION=$XDEBUG_VERSION
 
 FROM wordpress:$wp_docker_tag
 
