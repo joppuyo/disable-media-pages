@@ -24,6 +24,7 @@
         "codeception/module-db": "^1.1",
         "codeception/module-filesystem": "^1.0",
         "codeception/module-cli": "^1.1",
-        "codeception/util-universalframework": "^1.0"
+        "codeception/util-universalframework": "^1.0",
+        "wp-cli/wp-cli-bundle": "^2.5"
     }
 }
