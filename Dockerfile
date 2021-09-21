@@ -1,8 +1,9 @@
 # https://github.com/conetix/docker-wordpress-wp-cli/blob/master/Dockerfile
 
+ARG wp_docker_tag
+
 FROM wordpress:$wp_docker_tag
 
-ARG wp_docker_tag
 ARG XDEBUG_VERSION
 
 # Add sudo in order to run wp-cli as the www-data user
