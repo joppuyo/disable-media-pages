@@ -7,19 +7,33 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        wp_docker_tag:
-          - 5.0-php7.0-apache
-          - 5.1-php7.1-apache
-          - 5.2-php7.1-apache
-          - 5.3-php7.1-apache
-          - 5.4-php7.2-apache
-          - 5.5-php7.2-apache
-          - 5.6-php7.2-apache
-          - 5.7-php7.3-apache
-          - 5.8-php7.3-apache
+       include:
+         - wp_docker_tag: 5.0-php7.0-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.1-php7.1-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.2-php7.1-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.3-php7.1-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.4-php7.2-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.5-php7.2-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.6-php7.2-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.7-php7.3-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.8-php7.3-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.8-php7.4-apache
+           xdebug_version: xdebug-2.7.2
+         - wp_docker_tag: 5.8-php8.0-apache
+           xdebug_version: xdebug-3.0.4
       fail-fast: false
     env:
       WP_DOCKER_TAG: ${{ matrix.wp_docker_tag }}
+      XDEBUG_VERSION: ${{ matrix.xdebug_version }}
     steps:
       - uses: actions/checkout@v1
 
