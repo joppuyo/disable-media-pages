@@ -2,9 +2,10 @@
 
 ARG wp_docker_tag
 ARG XDEBUG_VERSION
-ENV XDEBUG_VERSION=$XDEBUG_VERSION
 
 FROM wordpress:$wp_docker_tag
+
+ENV XDEBUG_VERSION=$XDEBUG_VERSION
 
 # Add sudo in order to run wp-cli as the www-data user
 RUN apt-get update && apt-get install -y sudo less mariadb-client
