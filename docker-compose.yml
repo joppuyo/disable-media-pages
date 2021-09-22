@@ -19,6 +19,7 @@ services:
       - WORDPRESS_DB_PASSWORD=examplepass
       - WORDPRESS_DB_NAME=exampledb
       - WORDPRESS_DEBUG=1
+      - XDEBUG_MODE=coverage
       - WP_ROOT_FOLDER
       - TEST_SITE_WP_ADMIN_PATH
       - TEST_SITE_DB_NAME
