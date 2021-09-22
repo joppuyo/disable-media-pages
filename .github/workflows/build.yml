@@ -13,7 +13,13 @@ jobs:
     - name: Set Node Version
       shell: bash -l {0}
       run: nvm install
-      
+
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 7.0
+        extensions: zip
+
     - name: Install composer dependencies
       run: composer install --optimize-autoloader --no-dev
       
