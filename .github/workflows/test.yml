@@ -10,37 +10,49 @@ jobs:
        include:
          - wp_docker_tag: 5.0-php7.0-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.0
          - wp_docker_tag: 5.1-php7.1-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.1
          - wp_docker_tag: 5.2-php7.1-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.1
          - wp_docker_tag: 5.3-php7.1-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.1
          - wp_docker_tag: 5.4-php7.2-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.2
          - wp_docker_tag: 5.5-php7.2-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.2
          - wp_docker_tag: 5.6-php7.2-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.2
          - wp_docker_tag: 5.7-php7.3-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.3
          - wp_docker_tag: 5.8-php7.3-apache
            xdebug_version: xdebug-2.7.2
+           php_version: 7.3
          - wp_docker_tag: 5.8-php7.4-apache
            xdebug_version: xdebug-3.0.4
+           php_version: 7.4
          - wp_docker_tag: 5.8-php8.0-apache
            xdebug_version: xdebug-3.0.4
+           php_version: 8.0
       fail-fast: false
     env:
       WP_DOCKER_TAG: ${{ matrix.wp_docker_tag }}
       XDEBUG_VERSION: ${{ matrix.xdebug_version }}
+      PHP_VERSION: ${{ matrix.php_version }}
     steps:
       - uses: actions/checkout@v1
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.0
+          php-version: ${{ matrix.php_version }}
           extensions: zip
 
       - name: Get Composer Cache Directory
