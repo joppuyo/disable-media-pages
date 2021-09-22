@@ -8,11 +8,6 @@
             "email": "johannes@siipo.la"
         }
     ],
-    "config": {
-        "platform": {
-            "php": "7.0.0"
-        }
-    },
     "autoload": {
         "psr-4": {"NPX\\": "src/"}
     },
