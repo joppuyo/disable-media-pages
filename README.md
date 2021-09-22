@@ -8,6 +8,7 @@
 [![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/disable-media-pages)](https://wordpress.org/plugins/disable-media-pages/)
 [![WordPress Plugin: Required WP Version](https://img.shields.io/wordpress/plugin/wp-version/disable-media-pages?label=required&logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
 [![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/disable-media-pages?label=tested&logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
+[![codecov](https://codecov.io/gh/joppuyo/disable-media-pages/branch/master/graph/badge.svg?token=OKOGFRYYJ5)](https://codecov.io/gh/joppuyo/disable-media-pages)
 
 Disable "attachment" pages for WordPress media.
 
