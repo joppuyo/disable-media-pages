@@ -14,7 +14,7 @@ Completely disable "attachment" pages created by WordPress.
 
 By default WordPress creates a page for each of your attachments. This is can be undesirable because of two reasons.
 
-### SEO
+### Search engine optimization
 
 These are pages that don't have any content, except an image, so they provide little value and can negatively affect your SEO.
 
