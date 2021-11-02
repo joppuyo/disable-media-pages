@@ -75,11 +75,11 @@ class AcceptanceCest
         $I->click($publish_text);
 
         if (version_compare($wp_version, '5', 'ge')) {
-            $I->waitForElementVisible('.editor-post-publish-button', 10);
+            $I->waitForElementVisible('.editor-post-publish-button', 30);
             $I->click('.editor-post-publish-button');
         }
 
-        $I->waitForText('Page published.');
+        $I->waitForText('Page published.', 60);
         $I->amOnAdminPage('edit.php?post_type=page');
         $I->see('Example');
     }
