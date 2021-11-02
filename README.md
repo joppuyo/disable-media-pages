@@ -10,12 +10,17 @@
 [![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/disable-media-pages?label=tested&logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
 [![codecov](https://codecov.io/gh/joppuyo/disable-media-pages/branch/master/graph/badge.svg?token=OKOGFRYYJ5)](https://codecov.io/gh/joppuyo/disable-media-pages)
 
-Disable "attachment" pages for WordPress media.
+Completely disable "attachment" pages created by WordPress.
 
-By default WordPress creates a page for each of your attachments. This is can be undesirable because:
+By default WordPress creates a page for each of your attachments. This is can be undesirable because of two reasons.
 
-1. These are pages that don't have any content, except an image, so they provide little value and can negatively affect your SEO.
-2. They can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
+### SEO
+
+These are pages that don't have any content, except an image, so they provide little value and can negatively affect your SEO.
+
+### Reserved slugs
+
+They can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
 
 ## How it works
 
