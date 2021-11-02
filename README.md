@@ -24,7 +24,7 @@ Attachment pages can accidentally reserve slugs on your site. Let's say you uplo
 
 ## How it works
 
-This plugin works by automatically setting all attachment slugs to an unique id, so they won't conflict with your pages. If an attachment page is accessed, the plugin will set a 404 status code and display the "page not found" template.
+This plugin works by automatically setting all attachment slugs to an unique id, so they won't conflict with your pages. If an attachment page is accessed, the plugin will return a 404 status code and display the "page not found" template.
 
 You can also mangle any existing attachment slugs so they won't cause any issues in the future.
 
