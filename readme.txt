@@ -1,6 +1,6 @@
 # Disable Media Pages
 
-Tags: remove, disable, media, attachment, image, permalink
+Tags: remove, disable, hide, media, attachment, image, permalink
 Contributors: joppuyo
 Requires at least: 5.0
 Tested up to: 5.8
