@@ -5,6 +5,7 @@ class AcceptanceCest
     public function _before(AcceptanceTester $I)
     {
         $I->cli(['core', 'update-db']);
+        $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips', '--activate']);
         codecept_debug(error_reporting());
     }
 
