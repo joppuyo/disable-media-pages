@@ -61,3 +61,4 @@ modules:
             adminEmail: '%TEST_SITE_ADMIN_EMAIL%'
             title: 'Test site'
             wpDebug: false
+            isolatedInstall: false
