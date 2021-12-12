@@ -16,8 +16,15 @@ RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-
 COPY wp-su.sh /bin/wp
 RUN chmod +x /bin/wp-cli.phar /bin/wp
 
+# PDO for Codeception
 RUN docker-php-ext-install \
     pdo_mysql
+
+# Zip for PHP 8.1
+RUN apt-get install -y \
+        libzip-dev \
+        zip \
+  && docker-php-ext-install zip
 
 # Cleanup
 RUN apt-get clean
