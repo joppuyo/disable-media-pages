@@ -60,4 +60,5 @@ modules:
             domain: '%TEST_SITE_WP_DOMAIN%'
             adminEmail: '%TEST_SITE_ADMIN_EMAIL%'
             title: 'Test site'
+            wpDebug: false
 error_level: 'E_ERROR | E_WARNING | E_PARSE'
