@@ -5,6 +5,7 @@ class AcceptanceCest
     public function _before(AcceptanceTester $I)
     {
         $I->cli(['core', 'update-db']);
+        codecept_debug(error_reporting());
     }
 
     public function iUploadImage(AcceptanceTester $I)
