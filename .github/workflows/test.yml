@@ -126,3 +126,6 @@ jobs:
         with:
           files: ./tests/_output/coverage.xml
           verbose: true
+      - name: Dump docker logs on failure
+        if: failure()
+        uses: jwalton/gh-docker-logs@v1
