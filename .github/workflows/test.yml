@@ -51,7 +51,11 @@ jobs:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
       - uses: actions/checkout@v1
-
+      
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+    
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
