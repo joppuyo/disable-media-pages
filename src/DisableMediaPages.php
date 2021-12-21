@@ -106,6 +106,9 @@ class DisableMediaPages
                 'token' => wp_create_nonce('wp_rest'),
                 'i18n' => [
                     'plugin_title' => __('Disable Media Pages', 'disable-media-pages'),
+                    'tab_options' => __('Settings', 'disable-media-pages'),
+                    'tab_mangle' => __('Mangle existing slugs', 'disable-media-pages'),
+                    'tab_restore' => __('Restore media slugs', 'disable-media-pages'),
                     'mangle_title' => __('Mangle existing media slugs', 'disable-media-pages'),
                     'mangle_description' => __("This tool will let you change all existing post slugs to unique ids so they won't conflict with your page titles", 'disable-media-pages'),
                     'mangle_button' => __('Start mangling process', 'disable-media-pages'),
@@ -113,6 +116,13 @@ class DisableMediaPages
                     'mangle_progress_description' => __('Progress %d%%', 'disable-media-pages'),
                     'mangle_success_title' => __('All media slugs mangled', 'disable-media-pages'),
                     'mangle_success_button' => __('Start over', 'disable-media-pages'),
+                    'restore_title' => __('Restore media slugs', 'disable-media-pages'),
+                    'restore_description' => __("This tool allows you to restore media slugs from UUID4 format to a slug based on the post title.", 'disable-media-pages'),
+                    'restore_button' => __('Start restoring process', 'disable-media-pages'),
+                    'restore_progress_title' => __('Restoring media slugs...', 'disable-media-pages'),
+                    'restore_progress_description' => __('Progress %d%%', 'disable-media-pages'),
+                    'restore_success_title' => __('All media slugs restored', 'disable-media-pages'),
+                    'restore_success_button' => __('Start over', 'disable-media-pages'),
                 ],
             ]
         );
@@ -138,7 +148,7 @@ class DisableMediaPages
     public function admin_menu()
     {
         add_submenu_page(
-            null,
+            'options-general.php',
             __(
                 'Disable Media Pages',
                 'disable-media-pages'
@@ -160,6 +170,7 @@ class DisableMediaPages
 
     public function rest_api_init()
     {
+        // Mangle
         register_rest_route(
             'disable-media-pages/v1',
             '/get_all_attachments',
@@ -189,22 +200,53 @@ class DisableMediaPages
                 },
             ]
         );
+
+        // Restore
+        // TODO: move this into its own file
+        register_rest_route(
+            'disable-media-pages/v1',
+            '/get-attachments-to-restore',
+            [
+                'methods' => 'GET',
+                'callback' => [$this, 'rest_api_get_attachments_to_restore'],
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
+            ]
+        );
+
+        register_rest_route(
+            'disable-media-pages/v1',
+            '/restore/(?P<id>\d+)',
+            [
+                'methods' => 'POST',
+                'callback' => [$this, 'rest_api_restore_attachment'],
+                'args' => [
+                    'id' => [
+                        'validate_callback' => function ($param) {
+                            return is_numeric($param);
+                        },
+                    ],
+                ],
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
+            ]
+        );
     }
 
     public function rest_api_get_all_attachments(WP_REST_Request $data)
     {
-        $query = new WP_Query(
-            [
-                'post_type' => 'attachment',
-                'post_status' => 'inherit',
-                'fields' => 'ids',
-                'posts_per_page' => -1,
-            ]
+        global $wpdb;
+
+        $result = $wpdb->get_col(
+            "SELECT ID FROM  $wpdb->posts WHERE post_type = 'attachment' AND post_name NOT RLIKE '^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'"
         );
 
         $json = [
-            'posts' => $query->posts,
-            'total' => $query->post_count,
+            'posts' => $result,
+            'total' => count($result),
+            'result' => $result,
         ];
 
         return new WP_REST_Response($json);
@@ -231,6 +273,72 @@ class DisableMediaPages
 
         return new WP_REST_Response([]);
     }
+
+    public function rest_api_get_attachments_to_restore(WP_REST_Request $data)
+    {
+        global $wpdb;
+
+        $result = $wpdb->get_col(
+            "SELECT ID FROM $wpdb->posts WHERE post_type = 'attachment' AND post_name RLIKE '^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$' ORDER BY post_date ASC;"
+        );
+
+        $json = [
+            'posts' => $result,
+            'total' => count($result),
+            'result' => $result,
+        ];
+
+        return new WP_REST_Response($json);
+    }
+
+    public function rest_api_restore_attachment(WP_REST_Request $data)
+    {
+        $post_id = $data->get_param('id');
+        $attachment = get_post($post_id);
+        $slug = $attachment->post_name;
+
+        $is_uuid = (bool)preg_match(
+            '/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/',
+            $slug
+        );
+
+        if ($is_uuid) {
+
+            $new_slug = sanitize_title($attachment->post_title);
+
+            // Remove our filter so we get a real slug instead of UUID
+            remove_filter('wp_unique_post_slug', [$this, 'unique_slug'], 10);
+
+            var_dump($new_slug);
+
+            /*$new_slug = wp_unique_post_slug(
+                $new_slug,
+                $post_id,
+                $attachment->post_status,
+                $attachment->post_type,
+                $attachment->post_parent
+            );*/
+
+            var_dump($new_slug);
+
+            $new_attachment = [
+                'ID' => $attachment->ID,
+                'post_name' => $new_slug,
+            ];
+
+            var_dump($new_attachment);
+
+            // Add the filter back once we have the new slug
+            //add_filter('wp_unique_post_slug', [$this, 'unique_slug'], 10, 6);
+
+            wp_update_post($new_attachment);
+
+            var_dump(get_post($post_id));
+        }
+
+        return new WP_REST_Response([]);
+    }
+
 
     /**
      * @return string|string[]
