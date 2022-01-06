@@ -12,13 +12,13 @@
 
 Completely disable "attachment" pages created by WordPress.
 
-By default WordPress creates a page for each of your attachments. This is can be undesirable because of two reasons.
+By default, WordPress creates a page for each of your attachments. This is can be undesirable because of two reasons:
 
-### 1. Search engine optimization
+### Search engine optimization
 
 Attachment pages don't have any content, except an image, so they provide little value and can negatively affect your SEO.
 
-### 2. Reserved slugs
+### Reserved slugs
 
 Attachment pages can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
 
@@ -59,8 +59,18 @@ The unique id is an UUIDv4, without dashes.
 
 ### Can I restore the attachment page slugs after mangling?
 
-Not right now, but this feature is [planned](https://github.com/joppuyo/disable-media-pages/issues/4) in a future version of the plugin.
+Yes, this functionality is available in version 1.1.0
 
 ## Thanks
 
-Special thanks to Greg Schoppe for [his reseach](https://gschoppe.com/wordpress/disable-attachment-pages/) and inspiration that helped a lot with developing this plugin.
+Special thanks to Greg Schoppe for [his research](https://gschoppe.com/wordpress/disable-attachment-pages/) and inspiration that helped a lot with developing this plugin.
+
+## Support the plugin
+
+Maintaining a WordPress plugin is a lot of work. If you like the plugin, please consider rating it on [WordPress.org](https://wordpress.org/support/plugin/disable-media-pages/reviews/#new-post). You can also support me on [GitHub sponsors](https://github.com/sponsors/joppuyo). Thank you!
+
+If you are interested, you can also check out my other WordPress plugins:
+
+* [Disable Customizer](https://wordpress.org/plugins/customizer-disabler/)
+* [Disable Drop Cap](https://wordpress.org/plugins/disable-drop-cap/)
+* [ACF Image Aspect Ratio Crop](https://wordpress.org/plugins/acf-image-aspect-ratio-crop/)

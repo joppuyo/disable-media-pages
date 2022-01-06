@@ -8,18 +8,25 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.0.8
+Stable tag: 1.1.0
 
-Remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
+Completely remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
 ## Description
 
-Disable "attachment" pages for WordPress media.
+Completely disable "attachment" pages for WordPress media.
 
 By default WordPress creates a page for each of your attachments. This is can be undesirable because:
 
-1. These are pages that don't have any content, except an image, so they provide little value and can negatively affect your SEO.
-2. They can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
+By default, WordPress creates a page for each of your attachments. This is can be undesirable because of two reasons:
+
+### Search engine optimization
+
+Attachment pages don't have any content, except an image, so they provide little value and can negatively affect your SEO.
+
+### Reserved slugs
+
+Attachment pages can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
 
 ### How it works
 
@@ -29,7 +36,17 @@ You can also mangle any existing attachment slugs so they won't cause any issues
 
 ### Thanks
 
-Special thanks to Greg Schoppe for [his reseach](https://gschoppe.com/wordpress/disable-attachment-pages/) and inspiration that helped a lot with developing this plugin.
+Special thanks to Greg Schoppe for [his research](https://gschoppe.com/wordpress/disable-attachment-pages/) and inspiration that helped a lot with developing this plugin.
+
+## Support the plugin
+
+Maintaining a WordPress plugin is a lot of work. If you like the plugin, please consider rating it on [WordPress.org](https://wordpress.org/support/plugin/disable-media-pages/reviews/#new-post). You can also support me on [GitHub sponsors](https://github.com/sponsors/joppuyo). Thank you!
+
+If you are interested, you can also check out my other WordPress plugins:
+
+* [Disable Customizer](https://wordpress.org/plugins/customizer-disabler/)
+* [Disable Drop Cap](https://wordpress.org/plugins/disable-drop-cap/)
+* [ACF Image Aspect Ratio Crop](https://wordpress.org/plugins/acf-image-aspect-ratio-crop/)
 
 ## Installation
 
@@ -57,13 +74,19 @@ The unique id is an UUIDv4, without dashes.
 
 ### Can I restore the attachment page slugs after mangling?
 
-Not right now, but this feature is [planned](https://github.com/joppuyo/disable-media-pages/issues/4) in a future version of the plugin.
+Yes, this functionality is available in version 1.1.0
 
 ### Can I find this plugin on GitHub?
 
 Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media-pages)
 
 ## Changelog
+
+### 1.1.0 (2022-01-06)
+* Feature: Add a tool for restoring media slugs back to the original ones
+* Feature: Add status page for the plugin which tells you if you have attachments without unique ids
+* Fix: Add menu for the plugin under Settings on the WordPress dashboard
+* Fix: Update plugin icon
 
 ### 1.0.8 (2021-07-24)
 * Fix: Bump supported WordPress version to 5.8
