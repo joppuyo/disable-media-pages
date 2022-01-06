@@ -106,7 +106,7 @@ class DisableMediaPages
                 'token' => wp_create_nonce('wp_rest'),
                 'i18n' => [
                     'plugin_title' => __('Disable Media Pages', 'disable-media-pages'),
-                    'tab_options' => __('Settings', 'disable-media-pages'),
+                    'tab_status' => __('Plugin status', 'disable-media-pages'),
                     'tab_mangle' => __('Mangle existing slugs', 'disable-media-pages'),
                     'tab_restore' => __('Restore media slugs', 'disable-media-pages'),
                     'mangle_title' => __('Mangle existing media slugs', 'disable-media-pages'),
@@ -123,6 +123,10 @@ class DisableMediaPages
                     'restore_progress_description' => __('Progress %d%%', 'disable-media-pages'),
                     'restore_success_title' => __('All media slugs restored', 'disable-media-pages'),
                     'restore_success_button' => __('Start over', 'disable-media-pages'),
+                    'status_title' => __('Plugin status', 'disable-media-pages'),
+                    'status_non_unique_count_singular' => __('There is %d attachment with a non-unique slug.', 'disable-media-pages'),
+                    'status_non_unique_count_plural' => __('There are %d attachments with non-unique slugs.', 'disable-media-pages'),
+                    'status_non_unique_description' => __("With the plugin active, users can't access these pages. However, these attachments may accidentally reserve slugs from your pages. It's recommended to run the mangle attachments tool to prevent any potential issues in the future.", 'disable-media-pages'),
                 ],
             ]
         );
@@ -170,6 +174,19 @@ class DisableMediaPages
 
     public function rest_api_init()
     {
+        // Status
+        register_rest_route(
+            'disable-media-pages/v1',
+            '/get_status',
+            [
+                'methods' => 'GET',
+                'callback' => [$this, 'rest_api_get_status'],
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
+            ]
+        );
+
         // Mangle
         register_rest_route(
             'disable-media-pages/v1',
@@ -233,6 +250,21 @@ class DisableMediaPages
                 },
             ]
         );
+    }
+
+    public function rest_api_get_status(WP_REST_Request $data)
+    {
+        global $wpdb;
+
+        $result = $wpdb->get_var(
+            "SELECT COUNT(ID) FROM  $wpdb->posts WHERE post_type = 'attachment' AND post_name NOT RLIKE '^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'"
+        );
+
+        $json = [
+            'non_unique_count' => (int) $result,
+        ];
+
+        return new WP_REST_Response($json);
     }
 
     public function rest_api_get_all_attachments(WP_REST_Request $data)

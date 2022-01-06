@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="title">{{ title }}</h2>
+    <div class="disable-media-pages-tool__title-container">
+      <h2 class="disable-media-pages-tool__title">{{ title }}</h2>
+    </div>
 
     <p>{{ sprintf(description, 100) }}</p>
 

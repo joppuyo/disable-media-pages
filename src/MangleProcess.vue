@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="title">{{ title }}</h2>
+    <div class="disable-media-pages-tool__title-container">
+      <h2 class="disable-media-pages-tool__title">{{ title }}</h2>
+    </div>
     <p>{{ sprintf(i18n.mangle_progress_description, progress) }}</p>
     <div class="disable-media-pages__progress-bar">
       <div class="disable-media-pages__progress-bar-inner" v-bind:style="{
