@@ -110,7 +110,7 @@ class DisableMediaPages
                     'tab_mangle' => __('Mangle existing slugs', 'disable-media-pages'),
                     'tab_restore' => __('Restore media slugs', 'disable-media-pages'),
                     'mangle_title' => __('Mangle existing slugs', 'disable-media-pages'),
-                    'mangle_subtitle' => __('Existing media slug mangle tool', 'disable-media-pages'),
+                    'mangle_subtitle' => __('Existing media slug mangling tool', 'disable-media-pages'),
                     'mangle_description' => __("This tool will let you change all existing post slugs to unique ids so they won't conflict with your page titles", 'disable-media-pages'),
                     'mangle_button' => __('Start mangling process', 'disable-media-pages'),
                     'mangle_progress_title' => __('Mangling existing media slugs...', 'disable-media-pages'),

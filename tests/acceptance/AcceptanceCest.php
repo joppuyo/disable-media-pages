@@ -45,11 +45,10 @@ class AcceptanceCest
     public function iMangleExistingAttachments(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
-        $I->amOnPluginsPage();
-        $I->click(
-            'a[href="options-general.php?page=disable-media-pages"]'
-        );
-        $I->waitForText('Mangle existing media slugs');
+        $I->amOnAdminPage('options-general.php?page=disable-media-pages');
+        $I->waitForText('Mangle existing slugs');
+        $I->click('Mangle existing slugs');
+        $I->waitForText('Existing media slug mangling tool');
         $I->click('Start mangling process');
         $I->waitForText('All media slugs mangled');
     }
