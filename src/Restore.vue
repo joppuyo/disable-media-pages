@@ -1,26 +1,34 @@
 <template>
   <div>
-    <MangleStart v-if="!fetchingAllPosts && !manglingPosts && !complete"
+    <ToolStart v-if="!fetchingAllPosts && !manglingPosts && !complete"
                  v-bind:title="i18n.restore_title"
+                 v-bind:subtitle="i18n.restore_subtitle"
                  v-bind:description="i18n.restore_description"
                  v-bind:button-text="i18n.restore_button"
                  v-bind:event-name="'fetch-all-posts-to-restore'"
     />
-    <MangleFetch v-if="fetchingAllPosts"
+    <ToolFetch v-if="fetchingAllPosts"
                  v-bind:description="i18n.restore_progress_description"
-                 v-bind:title="i18n.restore_progress_title"
+                 v-bind:title="i18n.restore_title"
+                 v-bind:subtitle="i18n.restore_progress_title"
     />
-    <MangleProcess
+    <ToolProcess
         v-if="manglingPosts"
         v-bind:progress="progress"
         v-bind:description="i18n.restore_progress_description"
-        v-bind:title="i18n.restore_progress_title"
+        v-bind:title="i18n.restore_title"
+        v-bind:subtitle="i18n.restore_progress_title"
+        v-bind:total="total"
+        v-bind:processed="processed"
     />
-    <MangleResult
+    <ToolResult
         v-if="complete"
-        v-bind:title="i18n.restore_success_title"
+        v-bind:title="i18n.restore_title"
+        v-bind:subtitle="i18n.restore_success_title"
         v-bind:description="i18n.restore_progress_description"
         v-bind:button-text="i18n.restore_success_button"
+        v-bind:total="total"
+        v-bind:processed="processed"
     />
   </div>
 </template>
@@ -28,13 +36,13 @@
 <script>
 import axios from 'axios';
 import {sprintf} from 'sprintf-js';
-import MangleStart from "./MangleStart";
-import MangleFetch from "./MangleFetch";
-import MangleProcess from "./MangleProcess";
-import MangleResult from "./MangleResult";
+import ToolStart from "./ToolStart";
+import ToolProcess from "./ToolProcess";
+import ToolResult from "./ToolResult";
+import ToolFetch from "./ToolFetch";
 
 export default {
-  components: {MangleResult, MangleProcess, MangleFetch, MangleStart},
+  components: {ToolFetch, ToolResult, ToolProcess, ToolStart},
   data: function () {
     return {
       fetchingAllPosts: false,
@@ -107,16 +115,16 @@ export default {
         } else {
           this.manglingPosts = false;
           this.complete = true;
-          this.posts = [];
-          this.currentIndex = 0;
-          this.total = 0;
-          this.processed = 0;
-          this.currentIndex = 0;
         }
       });
     },
     startOver() {
       this.complete = false;
+      this.posts = [];
+      this.currentIndex = 0;
+      this.total = 0;
+      this.processed = 0;
+      this.currentIndex = 0;
     }
   }
 }

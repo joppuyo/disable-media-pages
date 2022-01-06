@@ -52,6 +52,16 @@ export default {
     sprintf(...args) {
       return sprintf(...args)
     },
-  }
+    goToMangle() {
+      this.currentTab = 'mangle';
+    }
+  },
+  mounted() {
+    this.$root.$on('go-to-mangle', this.goToMangle);
+  },
+  beforeDestroy() {
+    // https://readybytes.in/blog/how-to-fix-duplicate-event-listeners-in-vuejs
+    this.$root.$off('go-to-mangle', this.goToMangle);
+  },
 }
 </script>

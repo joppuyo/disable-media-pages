@@ -1,26 +1,52 @@
 <template>
   <div>
-    <div class="disable-media-pages-tool__title-container">
-      <h2 class="disable-media-pages-tool__title">{{ i18n.status_title }}</h2>
-    </div>
-    <div class="disable-media-pages-health">
-      <div class="disable-media-pages-health__icon"></div>
-      <div v-if="this.nonUniqueCount === 0">
+  <div class="disable-media-pages-tool__title-container">
+    <h2 class="disable-media-pages-tool__title">{{ i18n.status_title }}</h2>
+  </div>
+  <div class="disable-media-pages-tool__card">
+    <div class="disable-media-pages-health" v-if="loading">
+      <div class="disable-media-pages-health__icon"
+           v-html="require('!raw-loader!./icons/icon-loading.svg')"
+      >
+
+      </div>
+      <div>
         <div class="disable-media-pages-health__title">
-          No issues found
+          {{ i18n.status_loading_title }}
+        </div>
+        <div class="disable-media-pages-health__description">
+          {{ i18n.status_loading_description }}
         </div>
       </div>
-      <div v-if="this.nonUniqueCount > 0">
+    </div>
+    <div class="disable-media-pages-health" v-if="!loading && this.nonUniqueCount === 0">
+      <div class="disable-media-pages-health__icon" v-html="require('!raw-loader!./icons/icon-ok.svg')"></div>
+      <div>
+        <div class="disable-media-pages-health__title">
+          {{ i18n.status_no_issues_title }}
+        </div>
+        <div class="disable-media-pages-health__description">
+          {{ i18n.status_no_issues_description }}
+        </div>
+      </div>
+    </div>
+    <div class="disable-media-pages-health" v-if="!loading && this.nonUniqueCount > 0">
+      <div class="disable-media-pages-health__icon" v-html="require('!raw-loader!./icons/icon-warning.svg')"></div>
+      <div>
         <div class="disable-media-pages-health__title">
           <div>Some issues found</div>
         </div>
-        <div class="disable-media-pages-health__description">
-        <p><span v-if="nonUniqueCount === 1">{{sprintf(i18n.status_non_unique_count_singular, nonUniqueCount)}}</span>
-        <span v-else>{{sprintf(i18n.status_non_unique_count_plural, nonUniqueCount)}}</span>
-        <span>{{i18n.status_non_unique_description}}</span></p>
+        <div class="disable-media-pages-health__description disable-media-pages-health__description--has-button">
+          <p><span v-if="nonUniqueCount === 1">{{sprintf(i18n.status_non_unique_count_singular, nonUniqueCount)}}</span>
+            <span v-else>{{sprintf(i18n.status_non_unique_count_plural, nonUniqueCount)}}</span>
+            <span>{{i18n.status_non_unique_description}}</span></p>
+        </div>
+        <div class="disable-media-pages-health__button">
+          <button class="button button-primary" v-on:click="goToMangle">{{i18n.status_open_tool_button}}</button>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -62,6 +88,9 @@ export default {
         this.nonUniqueCount = response.data.non_unique_count;
       })
     },
+    goToMangle() {
+      this.$root.$emit('go-to-mangle');
+    }
   }
 }
 </script>
