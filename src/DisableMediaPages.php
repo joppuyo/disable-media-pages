@@ -343,37 +343,16 @@ class DisableMediaPages
         );
 
         if ($is_uuid) {
-
             $new_slug = sanitize_title($attachment->post_title);
 
             // Remove our filter so we get a real slug instead of UUID
             remove_filter('wp_unique_post_slug', [$this, 'unique_slug'], 10);
 
-            var_dump($new_slug);
-
-            /*$new_slug = wp_unique_post_slug(
-                $new_slug,
-                $post_id,
-                $attachment->post_status,
-                $attachment->post_type,
-                $attachment->post_parent
-            );*/
-
-            var_dump($new_slug);
-
             $new_attachment = [
                 'ID' => $attachment->ID,
                 'post_name' => $new_slug,
             ];
-
-            var_dump($new_attachment);
-
-            // Add the filter back once we have the new slug
-            //add_filter('wp_unique_post_slug', [$this, 'unique_slug'], 10, 6);
-
             wp_update_post($new_attachment);
-
-            var_dump(get_post($post_id));
         }
 
         return new WP_REST_Response([]);
