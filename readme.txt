@@ -14,9 +14,7 @@ Completely remove "attachment" pages for WordPress media. Improve SEO and preven
 
 ## Description
 
-Completely disable "attachment" pages for WordPress media.
-
-By default WordPress creates a page for each of your attachments. This is can be undesirable because:
+Completely disable "attachment" pages created by WordPress.
 
 By default, WordPress creates a page for each of your attachments. This is can be undesirable because of two reasons:
 
