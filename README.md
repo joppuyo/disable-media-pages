@@ -7,7 +7,7 @@
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/disable-media-pages?logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
 [![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/disable-media-pages)](https://wordpress.org/plugins/disable-media-pages/)
 [![WordPress Plugin: Required WP Version](https://img.shields.io/wordpress/plugin/wp-version/disable-media-pages?label=required&logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
-[![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/disable-media-pages?label=tested&logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
+[![WordPress Plugin: Tested WP Version](https://img.shields.io/badge/dynamic/json?label=tested&logo=wordpress&prefix=v&color=green&query=%24.tested&url=https%3A%2F%2Fapi.wordpress.org%2Fplugins%2Finfo%2F1.0%2Fdisable-media-pages.json)](https://wordpress.org/plugins/disable-media-pages/)
 [![codecov](https://codecov.io/gh/joppuyo/disable-media-pages/branch/master/graph/badge.svg?token=OKOGFRYYJ5)](https://codecov.io/gh/joppuyo/disable-media-pages)
 [![Active Development](https://img.shields.io/badge/Maintenance%20Level-Actively%20Developed-brightgreen.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
