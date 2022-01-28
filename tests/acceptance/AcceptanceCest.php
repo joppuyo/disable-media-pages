@@ -2,11 +2,18 @@
 
 class AcceptanceCest
 {
-    public function _before(AcceptanceTester $I)
+    
+    public function iDoSetup(AcceptanceTester $I)
     {
         $I->cli(['core', 'update-db']);
-        $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips', '--activate']);
-        codecept_debug(error_reporting());
+        
+        $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
+        
+        $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);
+        $I->cli(['plugin', 'activate', 'disable-welcome-messages-and-tips']);
+        
+        $I->cli(['theme', 'install', 'twentynineteen']);
+        $I->cli(['theme', 'activate', 'twentynineteen']);
     }
 
     public function iUploadImage(AcceptanceTester $I)
