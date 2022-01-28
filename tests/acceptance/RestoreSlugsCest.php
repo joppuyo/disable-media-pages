@@ -1,17 +1,19 @@
-<?php 
+<?php
 
-class AcceptanceCest
+class RestoreSlugsCest
 {
-    
+
     public function iDoSetup(AcceptanceTester $I)
     {
+        $I->importSqlDumpFile(codecept_data_dir('dump.sql'));
+
         $I->cli(['core', 'update-db']);
-        
+
         $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
-        
+
         $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);
         $I->cli(['plugin', 'activate', 'disable-welcome-messages-and-tips']);
-        
+
         $I->cli(['theme', 'install', 'twentynineteen']);
         $I->cli(['theme', 'activate', 'twentynineteen']);
     }
@@ -62,37 +64,44 @@ class AcceptanceCest
         $I->waitForText('All media slugs mangled');
     }
 
-    public function createPage(AcceptanceTester $I)
+    public function iCheckSlugIsUuid(AcceptanceTester $I)
     {
-        global $wp_version;
-        $I->loadSessionSnapshot('login');
-        $I->amOnAdminPage('post-new.php?post_type=page');
-        
-        $I->fillField('.editor-post-title__input', 'Example');
+        $query = new WP_Query([
+            'post_type' => 'attachment',
+            'post_status' => 'inherit',
+            'posts_per_page' => 1,
+        ]);
 
-        $publish_text = 'Publish…';
+        $post = $query->posts[0];
 
-        if (version_compare($wp_version, '5.5', 'ge')) {
-            $publish_text = 'Publish';
-        }
-
-        $I->click($publish_text);
-
-        if (version_compare($wp_version, '5', 'ge')) {
-            $I->waitForElementVisible('.editor-post-publish-button', 30);
-            $I->click('.editor-post-publish-button');
-        }
-
-        $I->waitForText('Page published.', 60);
-        $I->amOnAdminPage('edit.php?post_type=page');
-        $I->see('Example');
+        \PHPUnit\Framework\Assert::assertRegExp(
+            '/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/', $post->post_name
+        );
     }
 
-    public function iCheckPageUrl(AcceptanceTester $I)
+    public function iRestoreAttachmentSlugs(AcceptanceTester $I)
+    {
+        $I->loadSessionSnapshot('login');
+        $I->amOnAdminPage('options-general.php?page=disable-media-pages');
+        $I->waitForText('Restore media slugs');
+        $I->click('Restore media slugs');
+        $I->waitForText('Start restoring process');
+        $I->click('Start restoring process');
+        $I->waitForText('All media slugs restored');
+    }
+
+    public function iDeactivatePlugin(AcceptanceTester $I)
+    {
+        $I->loadSessionSnapshot('login');
+        $I->amOnPluginsPage();
+        $I->deactivatePlugin('disable-media-pages');
+    }
+
+    public function iGoToMediaPageOnceMore(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
         $I->amOnPage('/example/');
-        $I->see('Example');
+        $I->see('example');
     }
 
 }
