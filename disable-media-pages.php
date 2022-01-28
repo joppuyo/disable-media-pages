@@ -17,5 +17,5 @@ if (file_exists(__DIR__ . '/c3.php')) {
     require_once __DIR__ . '/c3.php';
 }
 
-$npx_disable_media_pages = \NPX\DisableMediaPages::get_instance();
-$npx_disable_media_pages->plugin_file = __FILE__;
+\NPX\DisableMediaPages\Plugin::get_instance();
+

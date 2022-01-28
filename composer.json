@@ -9,7 +9,7 @@
         }
     ],
     "autoload": {
-        "psr-4": {"NPX\\": "src/"}
+        "psr-4": {"NPX\\DisableMediaPages\\": "lib/"}
     },
     "require-dev": {
         "lucatume/wp-browser": "^3.0",
