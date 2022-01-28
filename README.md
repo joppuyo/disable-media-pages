@@ -60,7 +60,7 @@ The unique id is an UUIDv4, without dashes.
 
 ### Can I restore the attachment page slugs after mangling?
 
-Yes, this functionality is available in version 1.1.0
+Yes, this functionality is available in version 1.1.0. The attachment slug restoration tools allows you to restore the attachments back to slugs based on the title of the attachment.
 
 ## Thanks
 
