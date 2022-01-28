@@ -67,12 +67,8 @@ class AcceptanceCest
         global $wp_version;
         $I->loadSessionSnapshot('login');
         $I->amOnAdminPage('post-new.php?post_type=page');
-        $I->fillField(
-            version_compare($wp_version, '5.0', 'ge')
-                ? 'Add title'
-                : 'Enter title here',
-            'Example'
-        );
+        
+        $I->fillField('.editor-post-title__input', 'Example');
 
         $publish_text = 'Publish…';
 
