@@ -23,5 +23,6 @@ coverage:
     remote: false
     c3_url: '%C3_URL%'
     include:
-        - /src/*.php
-        - disable-media-pages.php
+        - /lib/*.php
+        - /lib/Modules/*.php
+        - /disable-media-pages.php
