@@ -297,10 +297,7 @@ class DisableMediaPages
         $attachment = get_post($data->get_param('id'));
         $slug = $attachment->post_name;
 
-        $is_uuid = (bool)preg_match(
-            '/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/',
-            $slug
-        );
+        $is_uuid = $this->isUuid($slug);
 
         if (!$is_uuid) {
             $new_attachment = [
@@ -337,10 +334,7 @@ class DisableMediaPages
         $attachment = get_post($post_id);
         $slug = $attachment->post_name;
 
-        $is_uuid = (bool)preg_match(
-            '/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/',
-            $slug
-        );
+        $is_uuid = $this->isUuid($slug);
 
         if ($is_uuid) {
             $new_slug = sanitize_title($attachment->post_title);
@@ -365,6 +359,19 @@ class DisableMediaPages
     public function generate_uuid_v4()
     {
         return str_replace('-', '', wp_generate_uuid4());
+    }
+
+    /**
+     * @param string $slug
+     * @return bool
+     */
+    private function isUuid(string $slug): bool
+    {
+        $is_uuid = (bool)preg_match(
+            '^/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/$',
+            $slug
+        );
+        return $is_uuid;
     }
 
 }
