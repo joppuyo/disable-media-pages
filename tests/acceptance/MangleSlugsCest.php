@@ -5,10 +5,13 @@ class MangleSlugsCest
     
     public function iDoSetup(AcceptanceTester $I)
     {
-        codecept_debug(codecept_data_dir('dump.sql'));
         $I->importSqlDumpFile(codecept_data_dir('dump.sql'));
+
+        $I->cli(['option', 'update', 'home', $I->getSiteDomain()]);
+        $I->cli(['option', 'update', 'siteurl', $I->getSiteDomain()]);
+
         $I->cli(['core', 'update-db']);
-        
+
         $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
         
         $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);

@@ -7,6 +7,9 @@ class RestoreSlugsCest
     {
         $I->importSqlDumpFile(codecept_data_dir('dump.sql'));
 
+        $I->cli(['option', 'update', 'home', $I->getSiteDomain()]);
+        $I->cli(['option', 'update', 'siteurl', $I->getSiteDomain()]);
+
         $I->cli(['core', 'update-db']);
 
         $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
