@@ -56,7 +56,7 @@ If you are interested, you can also check out my other WordPress plugins:
 
 ### How to mangle existing attachment slugs?
 
-Go to the plugins page, scroll to "Disable Media Pages", click "Settings". This will show you a wizard to mangle existing attachment slugs.
+Go to the **Settings** ▸ **Disable Media Pages** ▸ **Mangle existing slugs**. This will show you a wizard to mangle existing attachment slugs.
 
 ### Why not just use Yoast SEO? It has a feature to redirect attachment pages to parent
 
