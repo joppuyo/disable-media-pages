@@ -7,8 +7,8 @@ class MangleSlugsCest
     {
         $I->importSqlDumpFile(codecept_data_dir('dump.sql'));
 
-        $I->cli(['option', 'update', 'home', $I->getSiteDomain()]);
-        $I->cli(['option', 'update', 'siteurl', $I->getSiteDomain()]);
+        $I->cli(['option', 'update', 'home', getenv('TEST_SITE_WP_URL')]);
+        $I->cli(['option', 'update', 'siteurl', getenv('TEST_SITE_WP_URL')]);
 
         $I->cli(['core', 'update-db']);
 
