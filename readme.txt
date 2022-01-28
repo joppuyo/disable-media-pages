@@ -3,12 +3,12 @@
 Tags: remove, disable, hide, media, attachment, image, permalink
 Contributors: joppuyo
 Requires at least: 5.0
-Tested up to: 5.8
+Tested up to: 5.9
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 
 Completely remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
@@ -79,6 +79,11 @@ Yes, this functionality is available in version 1.1.0
 Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media-pages)
 
 ## Changelog
+
+### 1.1.3 (2022-01-28)
+* Fix: Bump supported WordPress version to 5.9
+* Fix: Readme updates
+* Fix: Add automated test for slug restore functionality
 
 ### 1.1.2 (2022-01-19)
 * Fix: Remove debugging statements

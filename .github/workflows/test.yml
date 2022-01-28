@@ -10,7 +10,7 @@ jobs:
        include:
          - wp_docker_tag: 5.0-php7.0-apache
            xdebug_version: xdebug-2.7.2
-           php_version: 7.0
+           php_version: '7.0'
          - wp_docker_tag: 5.1-php7.1-apache
            xdebug_version: xdebug-2.7.2
            php_version: 7.1
