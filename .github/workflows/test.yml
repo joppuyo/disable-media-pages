@@ -116,7 +116,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: Test output ${{ matrix.wp_version }}
+          name: Test output ${{ matrix.wp_docker_tag }}
           path: tests/_output/
       - uses: codecov/codecov-action@v2
         with:
