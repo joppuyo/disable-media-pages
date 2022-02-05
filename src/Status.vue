@@ -34,7 +34,7 @@
       <div class="disable-media-pages-health__icon" v-html="require('!raw-loader!./icons/icon-warning.svg')"></div>
       <div>
         <div class="disable-media-pages-health__title">
-          <div>Some issues found</div>
+          <div>{{ i18n.status_some_issues_title }}</div>
         </div>
         <div class="disable-media-pages-health__description disable-media-pages-health__description--has-button">
           <p><span v-if="nonUniqueCount === 1">{{sprintf(i18n.status_non_unique_count_singular, nonUniqueCount)}}</span>

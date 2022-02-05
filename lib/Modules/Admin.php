@@ -138,6 +138,7 @@ class Admin
                         'Please wait while we fetch the plugin status…',
                         'disable-media-pages'
                     ),
+                    'status_some_issues_title' => __("Some issues found", 'disable-media-pages'),
                     'status_non_unique_count_singular' => __(
                         'There is %d attachment with a non-unique slug.',
                         'disable-media-pages'
