@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 Completely remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
@@ -20,11 +20,11 @@ By default, WordPress creates a page for each of your attachments. This is can b
 
 ### Search engine optimization
 
-Attachment pages don't have any content, except an image, so they provide little value and can negatively affect your SEO.
+Attachment pages don't have any content, except an image, so they provide little value and can negatively affect your SEO because they are so-called [thin content](https://developers.google.com/search/docs/advanced/guidelines/thin-content). Even worse, attachment pages may in some cases rank higher that your actual content pages which leads to a poor user experience.
 
 ### Reserved slugs
 
-Attachment pages can accidentally reserve slugs on your site. Let's say you upload an image named `contact.jpeg`, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
+Attachment pages can accidentally reserve slugs on your site. Let's say you upload an image named **contact.jpeg**, an attachment page `https://example.com/contact` is automatically created. If you then try to create a page named **Contact**, the URL for that page will be `https://example.com/contact-2` which isn't that great.
 
 ### How it works
 
@@ -79,6 +79,11 @@ Yes, this functionality is available in version 1.1.0. The attachment slug resto
 Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media-pages)
 
 ## Changelog
+
+### 1.2.2 (2022-02-05)
+* Fix: Add missing localization string
+* Fix: Minor readme updates
+* Fix: Optimize acceptance test database size
 
 ### 1.2.1 (2022-01-28)
 * Fix: Fix typo
