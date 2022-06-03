@@ -22,5 +22,10 @@
         "codeception/util-universalframework": "^1.0",
         "wp-cli/wp-cli-bundle": "^2.5",
         "codeception/c3": "^2.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "codeception/c3": true
+        }
     }
 }

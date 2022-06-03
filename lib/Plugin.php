@@ -64,7 +64,7 @@ class Plugin
 
     function unique_slug($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug)
     {
-        if ($post_type === 'attachment') {
+        if ($post_type === 'attachment' && !self::is_uuid($slug)) {
             return $this->generate_uuid_v4();
         }
         return $slug;
@@ -76,5 +76,18 @@ class Plugin
     public function generate_uuid_v4()
     {
         return str_replace('-', '', wp_generate_uuid4());
+    }
+
+    /**
+     * @param string $slug
+     * @return bool
+     */
+    public static function is_uuid(string $slug): bool
+    {
+        $is_uuid = (bool)preg_match(
+            '/^[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}$/',
+            $slug
+        );
+        return $is_uuid;
     }
 }

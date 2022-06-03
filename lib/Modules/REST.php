@@ -148,7 +148,7 @@ class REST
         $attachment = get_post($data->get_param('id'));
         $slug = $attachment->post_name;
 
-        $is_uuid = $this->is_uuid($slug);
+        $is_uuid = Plugin::is_uuid($slug);
 
         if (!$is_uuid) {
             $new_attachment = [
@@ -187,7 +187,7 @@ class REST
         $attachment = get_post($post_id);
         $slug = $attachment->post_name;
 
-        $is_uuid = $this->is_uuid($slug);
+        $is_uuid = Plugin::is_uuid($slug);
 
         if ($is_uuid) {
             $new_slug = sanitize_title($attachment->post_title);
@@ -209,18 +209,5 @@ class REST
         }
 
         return new WP_REST_Response([]);
-    }
-
-    /**
-     * @param string $slug
-     * @return bool
-     */
-    private function is_uuid(string $slug): bool
-    {
-        $is_uuid = (bool)preg_match(
-            '/^[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}$/',
-            $slug
-        );
-        return $is_uuid;
     }
 }
