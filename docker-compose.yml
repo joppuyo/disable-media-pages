@@ -21,6 +21,7 @@ services:
       - WORDPRESS_DEBUG=1
       - XDEBUG_MODE=coverage
       - WP_ROOT_FOLDER
+      - WORDPRESS_CONFIG_EXTRA=define('WP_AUTO_UPDATE_CORE', false);
       - TEST_SITE_WP_ADMIN_PATH
       - TEST_SITE_DB_NAME
       - TEST_SITE_DB_HOST
