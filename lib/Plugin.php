@@ -26,7 +26,7 @@ class Plugin
     {
         add_filter('wp_unique_post_slug', [$this, 'unique_slug'], 10, 6);
         add_filter('template_redirect', [$this, 'set_404']);
-        add_filter('redirect_canonical', [$this, 'set_404'], 0);
+        add_filter('redirect_canonical', [$this, 'redirect_canonical'], 0, 2);
         add_filter('attachment_link', [$this, 'change_attachment_link'], 10, 2);
     }
 
@@ -51,6 +51,16 @@ class Plugin
             $wp_query->set_404();
             status_header(404);
         }
+    }
+
+    function redirect_canonical($redirect_url, $requested_url)
+    {
+        if (is_attachment()) {
+            global $wp_query;
+            $wp_query->set_404();
+            status_header(404);
+        }
+        return $redirect_url;
     }
 
     function change_attachment_link($url, $id)

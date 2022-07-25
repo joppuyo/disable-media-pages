@@ -81,8 +81,7 @@ Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media
 ## Changelog
 
 ### 1.3.0 (2022-06-03)
-* Feature: Improved slug generation logic. Now the plugin checks the slug is in UUIDv4 format before generating a new
-  slug. This prevents slugs from changing when saving a post.
+* Feature: Improved slug generation logic. Now the plugin checks the slug is in UUIDv4 format before generating a new slug. This prevents slugs from changing when saving a post.
 
 ### 1.2.3 (2022-05-25)
 * Fix: Test in WP 6.0
