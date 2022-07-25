@@ -80,6 +80,10 @@ Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media
 
 ## Changelog
 
+### 2.0.0 (2022-07-25)
+* Breaking change: fixed how the plugin hooks into the `redirect_canonical` action. Because the plugin didn't return a value from this filter, this caused the plugin to change default WordPress behaviour (eg. https://example.com/index.php did not redirect to https://example.com/ like with a normal WordPress installation). In this version the filter returns the value which restores this WordPress default functionality. I'm making this a major release because it changes the plugin behaviour, so I recommend testing your site in a development or staging environment before updating your production site.
+
+
 ### 1.3.0 (2022-06-03)
 * Feature: Improved slug generation logic. Now the plugin checks the slug is in UUIDv4 format before generating a new slug. This prevents slugs from changing when saving a post.
 
