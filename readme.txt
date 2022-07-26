@@ -8,7 +8,7 @@ Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 1.3.0
+Stable tag: 2.0.1
 
 Completely remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
@@ -80,8 +80,11 @@ Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media
 
 ## Changelog
 
+### 2.0.1 (2022-07-26)
+* Fix: small update to readme
+
 ### 2.0.0 (2022-07-25)
-* Breaking change: fixed how the plugin hooks into the `redirect_canonical` action. Because the plugin didn't return a value from this filter, this caused the plugin to change default WordPress behaviour (eg. https://example.com/index.php did not redirect to https://example.com/ like with a normal WordPress installation). In this version the filter returns the value which restores this WordPress default functionality. I'm making this a major release because it changes the plugin behaviour, so I recommend testing your site in a development or staging environment before updating your production site.
+* Breaking change: fixed how the plugin hooks into the `redirect_canonical` action. Because the plugin didn't return a value from this filter, this caused the plugin to change default WordPress behaviour (eg. https://example.com/index.php did not redirect to https://example.com/ like with a normal WordPress installation). In this version the filter returns the value which restores this WordPress default functionality. I'm making this a major release because it changes the plugin behaviour, so I recommend testing your site in a development or staging environment before updating your production site. For more information, see [this support thread](https://wordpress.org/support/topic/index-php-bug-breaks-wp-rocket/).
 
 
 ### 1.3.0 (2022-06-03)
