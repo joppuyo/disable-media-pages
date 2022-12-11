@@ -17,7 +17,7 @@ By default, WordPress creates a page for each of your attachments. This is can b
 
 ### Search engine optimization
 
-Attachment pages don't have any content, except an image, so they provide little value and can negatively affect your SEO because they are so-called [thin content](https://developers.google.com/search/docs/advanced/guidelines/thin-content). Even worse, attachment pages may in some cases rank higher that your actual content pages which leads to a poor user experience.
+Attachment pages don't have any content, except an image, so they provide little value and can negatively affect your SEO because they are so-called [thin content](https://developers.google.com/search/docs/advanced/guidelines/thin-content). Even worse, attachment pages may in some cases rank higher than your actual content pages which leads to a poor user experience.
 
 ### Reserved slugs
 
