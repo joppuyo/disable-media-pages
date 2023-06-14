@@ -46,6 +46,7 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      CHROMEDRIVER_EXTRA_ARGS: "--verbose"
     volumes:
       - db:/var/lib/mysql
   chromedriver:
