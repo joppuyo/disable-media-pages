@@ -139,4 +139,4 @@ jobs:
           verbose: true
       - name: Dump docker logs on failure
         if: failure()
-        uses: jwalton/gh-docker-logs@v1
+        uses: jwalton/gh-docker-logs@v2
