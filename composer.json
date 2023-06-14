@@ -24,6 +24,8 @@
         "codeception/c3": "^2.6"
     },
     "config": {
-        "allow-plugins": true
+        "allow-plugins": {
+            "codeception/c3": true
+        }
     }
 }

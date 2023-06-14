@@ -1,5 +1,7 @@
 <?php
 
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+
 
 /**
  * Inherited Methods
@@ -19,6 +21,16 @@
 class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
+
+    public function type($text)
+    {
+        $I = $this;
+        $I->executeInSelenium(function(RemoteWebDriver $webDriver)use($text)
+        {
+            // https://maslosoft.com/blog/2017/03/03/codeception-acceptance-filling-in-contenteditable/
+            $webDriver->getKeyboard()->sendKeys($text);
+        });
+    }
 
     /**
      * Define custom actions here

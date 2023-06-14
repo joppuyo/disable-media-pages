@@ -72,8 +72,14 @@ class MangleSlugsCest
         global $wp_version;
         $I->loadSessionSnapshot('login');
         $I->amOnAdminPage('post-new.php?post_type=page');
-        
-        $I->fillField('.editor-post-title__input', 'Example');
+
+        if (version_compare($wp_version, '6.2', 'ge')) {
+            // https://maslosoft.com/blog/2017/03/03/codeception-acceptance-filling-in-contenteditable/
+            $I->click('.editor-post-title__input');
+            $I->type('Example');
+        } else {
+            $I->fillField('.editor-post-title__input', 'Example');
+        }
 
         $publish_text = 'Publish…';
 

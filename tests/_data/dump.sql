@@ -355,7 +355,8 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (14, 1, 'dismissed_wp_pointers', 'wp496_privacy'),
 (15, 1, 'show_welcome_panel', '1'),
 (16, 1, 'session_tokens', 'a:2:{s:64:\"439ea7ce1a8a4a601c6c5e32d3ffa9adf3532628b533b454320ba9de3f182989\";a:4:{s:10:\"expiration\";i:1645276972;s:2:\"ip\";s:9:\"127.0.0.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\";s:5:\"login\";i:1644067372;}s:64:\"00e04a5d19af5414012675a7cbaccda5b5c96484ec54e2a2b292f7ca60eba384\";a:4:{s:10:\"expiration\";i:1645276993;s:2:\"ip\";s:9:\"127.0.0.1\";s:2:\"ua\";s:120:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36\";s:5:\"login\";i:1644067393;}}'),
-(17, 1, 'wp_dashboard_quick_press_last_post_id', '4');
+(17, 1, 'wp_dashboard_quick_press_last_post_id', '4'),
+(18, 1, 'wp_persisted_preferences', 'a:2:{s:14:"core/edit-post";a:2:{s:26:"isComplementaryAreaVisible";b:1;s:12:"welcomeGuide";b:0;}s:9:"_modified";s:24:"2023-06-14T12:53:32.859Z";}');
 
 INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
 (1, 'admin', '$P$BcZNKq4ALLKtjVDcx0uE0zYYjgcnHR/', 'admin', 'johannes@siipo.la', '', '2021-06-09 12:31:41', '', 0, 'admin');
