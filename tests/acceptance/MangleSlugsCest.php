@@ -12,6 +12,11 @@ class MangleSlugsCest
         $I->cli(['option', 'update', 'home', getenv('TEST_SITE_WP_URL')]);
         $I->cli(['option', 'update', 'siteurl', getenv('TEST_SITE_WP_URL')]);
 
+        global $wp_version;
+        if (version_compare($wp_version, '6.2', 'ge')) {
+            $I->cli(['core', 'update', '--version=6.2', '--force']);
+        }
+
         $I->cli(['core', 'update-db']);
 
         $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
