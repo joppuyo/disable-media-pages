@@ -10,7 +10,7 @@ jobs:
        include:
          - wp_docker_tag: 5.1-php7.2-apache
            xdebug_version: xdebug-2.7.2
-           php_version: 7.1
+           php_version: 7.2
          - wp_docker_tag: 5.2-php7.1-apache
            xdebug_version: xdebug-2.7.2
            php_version: 7.1
@@ -63,10 +63,10 @@ jobs:
            xdebug_version: xdebug-3.0.4
            php_version: '8.0'
          - wp_docker_tag: 6.2-php8.1-apache
-           xdebug_version: xdebug-3.0.4
+           xdebug_version: xdebug-3.2.1
            php_version: '8.1'
          - wp_docker_tag: 6.2-php8.2-apache
-           xdebug_version: xdebug-3.0.4
+           xdebug_version: xdebug-3.2.1
            php_version: '8.2'
       fail-fast: false
     env:
