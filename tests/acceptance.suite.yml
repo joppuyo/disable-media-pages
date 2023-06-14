@@ -42,6 +42,8 @@ modules:
             port: '%CHROMEDRIVER_PORT%'
             browser: chrome
             capabilities:
+              'goog:loggingPrefs':
+                browser: 'ALL'
               chromeOptions:
                 args: [ "--no-sandbox", "--disable-gpu" ]
         WPFilesystem:
