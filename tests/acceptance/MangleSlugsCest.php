@@ -77,7 +77,7 @@ class MangleSlugsCest
 
         $I->wait(10);
 
-        $I->executeInSelenium(function (RemoteWebDriver $webDriver) use ($event): void {
+        $I->executeInSelenium(function (RemoteWebDriver $webDriver) use (): void {
             $log = $webDriver->manage()->getLog('browser');
             codecept_debug($log);
         });
