@@ -80,14 +80,21 @@ class MangleSlugsCest
         $I->loadSessionSnapshot('login');
         $I->amOnAdminPage('post-new.php?post_type=page');
 
-        $I->wait(10);
-
-        $I->executeInSelenium(function (RemoteWebDriver $webDriver) {
-            $log = $webDriver->manage()->getLog('browser');
-            codecept_debug($log);
-        });
-
         if (version_compare($wp_version, '6.2', 'ge')) {
+
+            $I->wait(10);
+
+            $file = file_get_contents('http://wordpress.test/wp-includes/js/dist/block-editor.min.js?ver=43e40e04f77d598ede94');
+
+            codecept_debug($file);
+
+            $I->executeInSelenium(function (RemoteWebDriver $webDriver) {
+                $log = $webDriver->manage()->getLog('browser');
+                codecept_debug($log);
+            });
+
+
+
             // https://maslosoft.com/blog/2017/03/03/codeception-acceptance-filling-in-contenteditable/
             $I->waitForElementVisible('.editor-post-title__input', 30);
             $I->click('.editor-post-title__input');
