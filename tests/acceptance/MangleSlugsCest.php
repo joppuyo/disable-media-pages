@@ -12,7 +12,7 @@ class MangleSlugsCest
         $I->cli(['option', 'update', 'home', getenv('TEST_SITE_WP_URL')]);
         $I->cli(['option', 'update', 'siteurl', getenv('TEST_SITE_WP_URL')]);
         $I->cli(['config', 'set', 'WP_DEBUG', 'true', '--raw']);
-        $I->cli(['config', 'set', 'WP_SCRIPT_DEBUG', 'true', '--raw']);
+        $I->cli(['config', 'set', 'SCRIPT_DEBUG', 'true', '--raw']);
 
         global $wp_version;
         if (version_compare($wp_version, '6.2', 'ge')) {
