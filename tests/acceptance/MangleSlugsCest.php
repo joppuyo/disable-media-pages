@@ -86,9 +86,8 @@ class MangleSlugsCest
 
             $I->wait(10);
 
-            $file = file_get_contents('http://wordpress.test/wp-includes/js/dist/block-editor.min.js?ver=43e40e04f77d598ede94');
-
-            codecept_debug($file);
+            $file = file_get_contents('http://wordpress.test/wp-includes/js/dist/block-editor.js?ver=9cab0a54be77c672ab85');
+            file_put_contents(codecept_output_dir('block-editor.js'), $file);
 
             $I->executeInSelenium(function (RemoteWebDriver $webDriver) {
                 $log = $webDriver->manage()->getLog('browser');
