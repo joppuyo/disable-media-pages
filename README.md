@@ -1,7 +1,7 @@
 # Disable Media Pages
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-media-pages/Build?logo=github)](https://github.com/joppuyo/disable-media-pages/actions?query=workflow%3ABuild)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/joppuyo/disable-media-pages/Test?label=tests&logo=github)](https://github.com/joppuyo/disable-media-pages/actions?query=workflow%3ATest)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/joppuyo/disable-media-pages/build.yml?branch=master&logo=github)](https://github.com/joppuyo/disable-media-pages/actions?query=workflow%3ABuild)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/joppuyo/disable-media-pages/test.yml?branch=master&label=tests&logo=github)](https://github.com/joppuyo/disable-media-pages/actions?query=workflow%3ATest)
 [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/disable-media-pages?logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
 [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/disable-media-pages?logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/disable-media-pages?logo=wordpress)](https://wordpress.org/plugins/disable-media-pages/)
