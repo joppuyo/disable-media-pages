@@ -71,6 +71,7 @@ class MangleSlugsCest
     {
         global $wp_version;
         $I->loadSessionSnapshot('login');
+        $I->amOnAdminPage('options-general.php?page=disable-media-pages');
         $I->amOnAdminPage('post-new.php?post_type=page');
 
         if (version_compare($wp_version, '6.2', 'ge')) {
