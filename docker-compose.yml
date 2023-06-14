@@ -50,7 +50,7 @@ services:
     volumes:
       - db:/var/lib/mysql
   chromedriver:
-    image: robcherry/docker-chromedriver
+    image: selenium/standalone-chrome:112.0-chromedriver-112.0
     environment:
       CHROMEDRIVER_PORT: 9515
       CHROMEDRIVER_WHITELISTED_IPS: ""
