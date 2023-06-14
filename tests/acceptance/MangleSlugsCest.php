@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 class MangleSlugsCest
 {
@@ -71,8 +73,14 @@ class MangleSlugsCest
     {
         global $wp_version;
         $I->loadSessionSnapshot('login');
-        $I->amOnAdminPage('options-general.php?page=disable-media-pages');
         $I->amOnAdminPage('post-new.php?post_type=page');
+
+        $I->wait(10);
+
+        $I->executeInSelenium(function (RemoteWebDriver $webDriver) use ($event): void {
+            $log = $webDriver->manage()->getLog('browser');
+            codecept_debug($log);
+        });
 
         if (version_compare($wp_version, '6.2', 'ge')) {
             // https://maslosoft.com/blog/2017/03/03/codeception-acceptance-filling-in-contenteditable/
