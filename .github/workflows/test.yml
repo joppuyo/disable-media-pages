@@ -8,9 +8,6 @@ jobs:
     strategy:
       matrix:
        include:
-         - wp_docker_tag: 5.1-php7.2-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.2
          - wp_docker_tag: 5.2-php7.1-apache
            xdebug_version: xdebug-2.7.2
            php_version: 7.1
