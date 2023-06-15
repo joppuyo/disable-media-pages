@@ -31,8 +31,8 @@ You can also mangle any existing attachment slugs so they won't cause any issues
 
 ## Requirements
 
-* WordPress 5.0 or later
-* PHP 7.0 or later
+* WordPress 5.2 or later
+* PHP 7.1 or later
 
 ## Installation
 
