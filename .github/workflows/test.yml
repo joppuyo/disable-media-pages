@@ -68,6 +68,12 @@ jobs:
          - wp_docker_tag: 6.3-php8.0-apache
            xdebug_version: xdebug-3.0.4
            php_version: '8.0'
+         - wp_docker_tag: 6.3-php8.1-apache
+           xdebug_version: xdebug-3.2.1
+           php_version: '8.1'
+         - wp_docker_tag: 6.3-php8.2-apache
+           xdebug_version: xdebug-3.2.1
+           php_version: '8.2'
       fail-fast: false
     env:
       WP_DOCKER_TAG: ${{ matrix.wp_docker_tag }}
