@@ -44,6 +44,7 @@ modules:
             capabilities:
               chromeOptions:
                 args: [ "--no-sandbox", "--disable-dev-shm-usage", "--headless", "--disable-setuid-sandbox" ]
+            window_size: 1920x1080
         WPFilesystem:
             wpRootFolder: '%WP_ROOT_FOLDER%'
         WPCLI:
