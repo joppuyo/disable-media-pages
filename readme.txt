@@ -8,7 +8,7 @@ Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 
 Completely remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
