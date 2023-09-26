@@ -85,7 +85,34 @@ class Plugin
      */
     public function generate_uuid_v4()
     {
-        return str_replace('-', '', wp_generate_uuid4());
+        return str_replace('-', '', $this->wp_generate_uuid4_improved());
+    }
+
+    /**
+     * Generate UUIDv4 with improved randomness. The built-in WordPress function starts to generate duplicate UUIDs
+     * After 80 000 iterations. This function uses random_int() instead of mt_rand() to generate the UUID.
+     * @see https://core.trac.wordpress.org/ticket/59239
+     * @return string
+     */
+    public function wp_generate_uuid4_improved()
+    {
+        try {
+            return sprintf(
+                '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                random_int(0, 0xffff),
+                random_int(0, 0xffff),
+                random_int(0, 0xffff),
+                random_int(0, 0x0fff) | 0x4000,
+                random_int(0, 0x3fff) | 0x8000,
+                random_int(0, 0xffff),
+                random_int(0, 0xffff),
+                random_int(0, 0xffff)
+            );
+        } catch (\Exception $exception) {
+            // If for some reason random_int() fails (eg. a source of randomness is not available), fall back to the
+            // built-in WordPress function.
+            return wp_generate_uuid4();
+        }
     }
 
     /**
