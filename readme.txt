@@ -80,6 +80,9 @@ Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media
 
 ## Changelog
 
+### 3.0.3 (2023‐09‐26)
+* Fix: Improved randomness in UUIDv4 generation
+
 ### 3.0.2 (2023‐08‐10)
 * Fix: Tested in WP 6.3
 
