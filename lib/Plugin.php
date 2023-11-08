@@ -59,6 +59,14 @@ class Plugin
             global $wp_query;
             $wp_query->set_404();
             status_header(404);
+
+            // Handle WordPress 6.4's attachment page redirection by cancelling the redirection.
+            // https://make.wordpress.org/core/2023/10/16/changes-to-attachment-pages/
+            global $wp_version;
+            if (version_compare($wp_version, '6.4', '>=')) {
+                return false;
+            }
+
         }
         return $redirect_url;
     }
