@@ -2,30 +2,39 @@
 
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
-class MangleSlugsCest
+class WordPress64Cest
 {
-    
-    public function iDoSetup(AcceptanceTester $I)
+
+    public function iDoSetup(AcceptanceTester $I, $scenario)
     {
+        global $wp_version;
+        if (version_compare($wp_version, '6.4', 'lt')) {
+            $scenario->skip('This test is only applicable for WordPress 6.4 and newer.');
+        }
+
         $I->importSqlDumpFile(codecept_data_dir('dump.sql'));
 
         $I->cli(['option', 'update', 'home', $_ENV['TEST_SITE_WP_URL']]);
         $I->cli(['option', 'update', 'siteurl', $_ENV['TEST_SITE_WP_URL']]);
         $I->cli(['option', 'update', 'admin_email_lifespan', '2147483646']);
 
-        $I->cli(['core', 'update-db']);
-
         try {
-            $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
             $I->cli(['config', 'set', 'WP_DEBUG', 'true', '--raw']);
             $I->cli(['config', 'set', 'SCRIPT_DEBUG', 'true', '--raw']);
+            $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
         } catch (Throwable $exception) {
 
         }
 
+        $I->cli(['core', 'update-db']);
+
+        $I->cli(['option', 'set', 'wp_attachment_pages_enabled', '0']);
+
+        //$I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
+
         $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);
         $I->cli(['plugin', 'activate', 'disable-welcome-messages-and-tips']);
-        
+
         $I->cli(['theme', 'install', 'twentynineteen']);
         $I->cli(['theme', 'activate', 'twentynineteen']);
     }
@@ -47,7 +56,7 @@ class MangleSlugsCest
     {
         $I->loadSessionSnapshot('login');
         $I->amOnPage('/example/');
-        $I->see('example');
+        $I->dontSee('example');
     }
 
     public function iActivatePlugin(AcceptanceTester $I)

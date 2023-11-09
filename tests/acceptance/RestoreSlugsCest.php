@@ -7,12 +7,17 @@ class RestoreSlugsCest
     {
         $I->importSqlDumpFile(codecept_data_dir('dump.sql'));
 
-        $I->cli(['option', 'update', 'home', getenv('TEST_SITE_WP_URL')]);
-        $I->cli(['option', 'update', 'siteurl', getenv('TEST_SITE_WP_URL')]);
+        $I->cli(['option', 'update', 'home', $_ENV['TEST_SITE_WP_URL']]);
+        $I->cli(['option', 'update', 'siteurl', $_ENV['TEST_SITE_WP_URL']]);
+        $I->cli(['option', 'update', 'admin_email_lifespan', '2147483646']);
 
         $I->cli(['core', 'update-db']);
 
-        $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
+        try {
+            $I->cli(['config', 'set', 'AUTOMATIC_UPDATER_DISABLED', 'true', '--raw']);
+        } catch (Throwable $exception) {
+
+        }
 
         $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);
         $I->cli(['plugin', 'activate', 'disable-welcome-messages-and-tips']);
