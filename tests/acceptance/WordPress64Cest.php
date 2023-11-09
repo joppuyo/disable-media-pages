@@ -39,6 +39,9 @@ class WordPress64Cest
         $I->cli(['theme', 'activate', 'twentynineteen']);
     }
 
+    /**
+     * @depends iDoSetup
+     */
     public function iUploadImage(AcceptanceTester $I)
     {
         $I->loginAsAdmin();
@@ -52,6 +55,9 @@ class WordPress64Cest
         $I->saveSessionSnapshot('login');
     }
 
+    /**
+     * @depends iUploadImage
+     */
     public function iGoToMediaPage(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
@@ -59,6 +65,9 @@ class WordPress64Cest
         $I->dontSee('example');
     }
 
+    /**
+     * @depends iGoToMediaPage
+     */
     public function iActivatePlugin(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
@@ -66,6 +75,9 @@ class WordPress64Cest
         $I->activatePlugin('disable-media-pages');
     }
 
+    /**
+     * @depends iActivatePlugin
+     */
     public function iGoToMediaPageAgain(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
@@ -74,6 +86,9 @@ class WordPress64Cest
         $I->see('That page can’t be found.');
     }
 
+    /**
+     * @depends iGoToMediaPageAgain
+     */
     public function iMangleExistingAttachments(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
@@ -85,6 +100,9 @@ class WordPress64Cest
         $I->waitForText('All media slugs mangled');
     }
 
+    /**
+     * @depends iMangleExistingAttachments
+     */
     public function createPage(AcceptanceTester $I)
     {
         global $wp_version;
@@ -125,6 +143,9 @@ class WordPress64Cest
         $I->see('Example');
     }
 
+    /**
+     * @depends createPage
+     */
     public function iCheckPageUrl(AcceptanceTester $I)
     {
         $I->loadSessionSnapshot('login');
