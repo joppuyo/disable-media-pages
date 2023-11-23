@@ -191,15 +191,9 @@ class REST
 
         if ($is_uuid) {
             $new_slug = sanitize_title($attachment->post_title);
-
-            global $wp_filter;
-            $plugin::debug($wp_filter['wp_unique_post_slug']);
-
+            
             // Remove our filter so we get a real slug instead of UUID
             remove_filter('wp_unique_post_slug', [$plugin, 'unique_slug'], 10);
-
-            global $wp_filter;
-            $plugin::debug($wp_filter['wp_unique_post_slug']);
 
             $new_attachment = [
                 'ID' => $attachment->ID,
