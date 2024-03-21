@@ -3,6 +3,7 @@
 namespace NPX\DisableMediaPages;
 
 use NPX\DisableMediaPages\Modules\Admin;
+use NPX\DisableMediaPages\Modules\CLI;
 use NPX\DisableMediaPages\Modules\REST;
 use WP_Query;
 use WP_REST_Request;
@@ -28,6 +29,8 @@ class Plugin
         add_filter('template_redirect', [$this, 'set_404']);
         add_filter('redirect_canonical', [$this, 'redirect_canonical'], 0, 2);
         add_filter('attachment_link', [$this, 'change_attachment_link'], 10, 2);
+
+        error_log(print_r('init', true));
     }
 
     public function __construct()
@@ -35,6 +38,7 @@ class Plugin
         add_filter('init', [$this, 'init']);
         REST::get_instance();
         Admin::get_instance();
+        CLI::get_instance();
     }
 
     public static function debug(...$messages)
@@ -46,6 +50,8 @@ class Plugin
 
     function set_404()
     {
+        error_log(print_r('set_404', true));
+
         if (is_attachment()) {
             global $wp_query;
             $wp_query->set_404();
