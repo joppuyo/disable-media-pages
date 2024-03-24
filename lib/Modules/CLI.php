@@ -28,12 +28,26 @@ class CLI
 
     public function mangle()
     {
-        \WP_CLI::success('Mangling media slugs');
+        $mangle = Mangle::get_instance();
+        \WP_CLI::line('Mangling media slugs...');
+        $attachment_ids = $mangle->get_attachments_to_mangle();
+        foreach ($attachment_ids as $attachment_id) {
+            \WP_CLI::line('Mangling attachment with ID ' . $attachment_id . ' and title ' . get_the_title($attachment_id));
+            $mangle->mangle_attachment($attachment_id);
+        }
+        \WP_CLI::success('Successfully mangled ' . count($attachment_ids) . ' media slugs!');
     }
 
     public function restore()
     {
-        \WP_CLI::success('Restoring media slugs');
+        \WP_CLI::line('Restoring media slugs...');
+        $restore = Restore::get_instance();
+        $attachment_ids = $restore->get_attachments_to_restore();
+        foreach ($attachment_ids as $attachment_id) {
+            \WP_CLI::line('Restoring attachment with ID ' . $attachment_id . ' and title ' . get_the_title($attachment_id));
+            $restore->restore_attachment($attachment_id);
+        }
+        \WP_CLI::success('Successfully restored ' . count($attachment_ids) . ' media slugs!');
     }
 
 }
