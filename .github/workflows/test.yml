@@ -144,6 +144,7 @@ jobs:
           CHROMEDRIVER_PORT: 4444
           XDEBUG_MODE: coverage
           C3_URL: http://wordpress.test/wp-content/plugins/disable-media-pages/disable-media-pages.php?
+          WP_CLI_ALLOW_ROOT: true
 
       - name: Upload artifact
         if: failure()
