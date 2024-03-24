@@ -127,11 +127,10 @@ class REST
 
     public function rest_api_get_all_attachments(WP_REST_Request $data)
     {
-        global $wpdb;
 
-        $result = $wpdb->get_col(
-            "SELECT ID FROM  $wpdb->posts WHERE post_type = 'attachment' AND post_name NOT RLIKE '^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'"
-        );
+        $mangle = Mangle::get_instance();
+
+        $result = $mangle->get_attachments_to_mangle();
 
         $json = [
             'posts' => $result,
@@ -144,31 +143,20 @@ class REST
 
     public function rest_api_process_attachment(WP_REST_Request $data)
     {
-        $plugin = Plugin::get_instance();
-        $attachment = get_post($data->get_param('id'));
-        $slug = $attachment->post_name;
+        $mangle = Mangle::get_instance();
 
-        $is_uuid = Plugin::is_uuid($slug);
+        $post_id = $data->get_param('id');
 
-        if (!$is_uuid) {
-            $new_attachment = [
-                'ID' => $attachment->ID,
-                'post_name' => $plugin->generate_uuid_v4(),
-            ];
-
-            wp_update_post($new_attachment);
-        }
+        $mangle->mangle_attachment($post_id);
 
         return new WP_REST_Response([]);
     }
 
     public function rest_api_get_attachments_to_restore(WP_REST_Request $data)
     {
-        global $wpdb;
+        $restore = Restore::get_instance();
 
-        $result = $wpdb->get_col(
-            "SELECT ID FROM $wpdb->posts WHERE post_type = 'attachment' AND post_name RLIKE '^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$' ORDER BY post_date ASC;"
-        );
+        $result = $restore->get_attachments_to_restore();
 
         $json = [
             'posts' => $result,
@@ -181,26 +169,11 @@ class REST
 
     public function rest_api_restore_attachment(WP_REST_Request $data)
     {
-        $plugin = Plugin::get_instance();
-
         $post_id = $data->get_param('id');
-        $attachment = get_post($post_id);
-        $slug = $attachment->post_name;
 
-        $is_uuid = Plugin::is_uuid($slug);
+        $restore = Restore::get_instance();
 
-        if ($is_uuid) {
-            $new_slug = sanitize_title($attachment->post_title);
-            
-            // Remove our filter so we get a real slug instead of UUID
-            remove_filter('wp_unique_post_slug', [$plugin, 'unique_slug'], 10);
-
-            $new_attachment = [
-                'ID' => $attachment->ID,
-                'post_name' => $new_slug,
-            ];
-            wp_update_post($new_attachment);
-        }
+        $restore->restore_attachment($post_id);
 
         return new WP_REST_Response([]);
     }
