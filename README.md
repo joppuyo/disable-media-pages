@@ -29,11 +29,26 @@ This plugin works by automatically setting all attachment slugs to an unique id,
 
 You can also mangle any existing attachment slugs so they won't cause any issues in the future.
 
+## WP CLI support
+
+The plugin supports WP CLI.
+
+### Mangle existing attachment slugs
+
+```
+wp disable-media-pages mangle
+```
+
+### Restore attachment slugs
+
+```
+wp disable-media-pages restore
+```
+
+
 ## Note for WordPress 6.4
 
 WordPress 6.4 includes [a new feature](https://make.wordpress.org/core/2023/10/16/changes-to-attachment-pages/) that allows you to disable attachment pages. However, this feature redirects attachment pages to the file URL instead of returning a 404 error. To completely disable attachment pages, you should use this plugin instead. The WP 6.4 feature also does not fix the issue where attachment pages reserve slugs for pages.
-
-Also, it seems like this feature does not work as intended, because it will disable attachment pages only for users who are logged in. Anonymous users will still be able to access attachment pages. You can follow the progress of this issue on [WordPress Trac](https://core.trac.wordpress.org/ticket/59866).
 
 Also, there is no user interface to enable or disable media pages, they are automatically disabled for new sites but remain enabled for existing sites.
 
