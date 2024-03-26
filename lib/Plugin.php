@@ -29,8 +29,6 @@ class Plugin
         add_filter('template_redirect', [$this, 'set_404']);
         add_filter('redirect_canonical', [$this, 'redirect_canonical'], 0, 2);
         add_filter('attachment_link', [$this, 'change_attachment_link'], 10, 2);
-
-        error_log(print_r('init', true));
     }
 
     public function __construct()
@@ -50,8 +48,6 @@ class Plugin
 
     function set_404()
     {
-        error_log(print_r('set_404', true));
-
         if (is_attachment()) {
             global $wp_query;
             $wp_query->set_404();
