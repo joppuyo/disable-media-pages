@@ -90,7 +90,7 @@ jobs:
            xdebug_version: xdebug-3.2.1
            php_version: '8.2'
          - wp_docker_tag: 6.5-php8.3-apache
-           xdebug_version: xdebug-3.2.1
+           xdebug_version: xdebug-3.3.1
            php_version: '8.3'
       fail-fast: false
     env:
