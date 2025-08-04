@@ -82,7 +82,7 @@ class CliRestoreSlugsCest
 
         $post = $query->posts[0];
 
-        \PHPUnit\Framework\Assert::assertRegExp(
+        \PHPUnit\Framework\Assert::assertMatchesRegularExpression(
             '/[0-9a-f]{8}[0-9a-f]{4}4[0-9a-f]{3}[89ab][0-9a-f]{3}[0-9a-f]{12}/', $post->post_name
         );
     }
