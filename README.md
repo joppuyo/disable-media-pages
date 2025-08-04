@@ -56,8 +56,8 @@ Because of these issues, I recommend you to use this plugin instead of the built
 
 ## Requirements
 
-* WordPress 5.2 or later
-* PHP 7.1 or later
+* WordPress 6.0 or later
+* PHP 8.0 or later
 
 ## Installation
 

@@ -2,9 +2,9 @@
 
 Tags: remove, disable, hide, media, attachment, image, permalink
 Contributors: joppuyo
-Requires at least: 5.2
-Tested up to: 6.6
-Requires PHP: 7.1
+Requires at least: 6.0
+Tested up to: 6.8
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
