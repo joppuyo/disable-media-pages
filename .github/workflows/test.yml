@@ -7,22 +7,64 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-       include:
-         - wp_docker_tag: 6.6-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
-         - wp_docker_tag: 6.6-php8.2-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.2'
-         - wp_docker_tag: 6.6-php8.3-apache
-           xdebug_version: xdebug-3.3.1
-           php_version: '8.3'
-         - wp_docker_tag: 6.7-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
-         - wp_docker_tag: 6.8-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
+        include:
+          - wp_docker_tag: 6.0-php8.0-apache
+            xdebug_version: xdebug-3.0.4
+            php_version: "8.0"
+          - wp_docker_tag: 6.1-php8.0-apache
+            xdebug_version: xdebug-3.0.4
+            php_version: "8.0"
+          - wp_docker_tag: 6.2-php8.0-apache
+            xdebug_version: xdebug-3.0.4
+            php_version: "8.0"
+          - wp_docker_tag: 6.2-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
+          - wp_docker_tag: 6.2-php8.2-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.2"
+          - wp_docker_tag: 6.3-php8.0-apache
+            xdebug_version: xdebug-3.0.4
+            php_version: "8.0"
+          - wp_docker_tag: 6.3-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
+          - wp_docker_tag: 6.3-php8.2-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.2"
+          - wp_docker_tag: 6.4-php8.0-apache
+            xdebug_version: xdebug-3.0.4
+            php_version: "8.0"
+          - wp_docker_tag: 6.4-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
+          - wp_docker_tag: 6.4-php8.2-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.2"
+          - wp_docker_tag: 6.5-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
+          - wp_docker_tag: 6.5-php8.2-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.2"
+          - wp_docker_tag: 6.5-php8.3-apache
+            xdebug_version: xdebug-3.3.1
+            php_version: "8.3"
+          - wp_docker_tag: 6.6-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
+          - wp_docker_tag: 6.6-php8.2-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.2"
+          - wp_docker_tag: 6.6-php8.3-apache
+            xdebug_version: xdebug-3.3.1
+            php_version: "8.3"
+          - wp_docker_tag: 6.7-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
+          - wp_docker_tag: 6.8-php8.1-apache
+            xdebug_version: xdebug-3.2.1
+            php_version: "8.1"
       fail-fast: false
     env:
       WP_DOCKER_TAG: ${{ matrix.wp_docker_tag }}
@@ -30,12 +72,12 @@ jobs:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
       - uses: actions/checkout@v1
-      
+
       - name: Set Node Version
         uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
-    
+          node-version-file: ".nvmrc"
+
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
