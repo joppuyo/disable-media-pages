@@ -8,90 +8,6 @@ jobs:
     strategy:
       matrix:
        include:
-         - wp_docker_tag: 5.2-php7.1-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.1
-         - wp_docker_tag: 5.3-php7.1-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.1
-         - wp_docker_tag: 5.4-php7.2-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.2
-         - wp_docker_tag: 5.5-php7.2-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.2
-         - wp_docker_tag: 5.6-php7.2-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.2
-         - wp_docker_tag: 5.7-php7.3-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.3
-         - wp_docker_tag: 5.8-php7.3-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.3
-         - wp_docker_tag: 5.8-php7.4-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: 7.4
-         - wp_docker_tag: 5.8-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 5.9-php7.3-apache
-           xdebug_version: xdebug-2.7.2
-           php_version: 7.3
-         - wp_docker_tag: 5.9-php7.4-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: 7.4
-         - wp_docker_tag: 5.9-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 6.0-php7.4-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: 7.4
-         - wp_docker_tag: 6.0-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 6.1-php7.4-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '7.4'
-         - wp_docker_tag: 6.1-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 6.2-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 6.2-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
-         - wp_docker_tag: 6.2-php8.2-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.2'
-         - wp_docker_tag: 6.3-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 6.3-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
-         - wp_docker_tag: 6.3-php8.2-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.2'
-         - wp_docker_tag: 6.4-php8.0-apache
-           xdebug_version: xdebug-3.0.4
-           php_version: '8.0'
-         - wp_docker_tag: 6.4-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
-         - wp_docker_tag: 6.4-php8.2-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.2'
-         - wp_docker_tag: 6.5-php8.1-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.1'
-         - wp_docker_tag: 6.5-php8.2-apache
-           xdebug_version: xdebug-3.2.1
-           php_version: '8.2'
-         - wp_docker_tag: 6.5-php8.3-apache
-           xdebug_version: xdebug-3.3.1
-           php_version: '8.3'
          - wp_docker_tag: 6.6-php8.1-apache
            xdebug_version: xdebug-3.2.1
            php_version: '8.1'
@@ -139,7 +55,7 @@ jobs:
         run: npx webpack -p
 
       - name: Setup docker
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Create config file
         run: touch .env.testing
