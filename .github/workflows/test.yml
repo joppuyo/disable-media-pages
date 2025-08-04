@@ -172,7 +172,7 @@ jobs:
 
       - name: Upload artifact
         if: failure()
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: Test output ${{ matrix.wp_docker_tag }}
           path: tests/_output/
