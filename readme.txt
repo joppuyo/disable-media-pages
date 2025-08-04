@@ -8,7 +8,7 @@ Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://github.com/sponsors/joppuyo
-Stable tag: 3.1.3
+Stable tag: 4.0.0
 
 Completely remove "attachment" pages for WordPress media. Improve SEO and prevent conflicts between page and image permalinks.
 
@@ -103,6 +103,10 @@ Yes, this functionality is available in version 1.1.0. The attachment slug resto
 Yes, check out the [GitHub repository.](https://github.com/joppuyo/disable-media-pages)
 
 ## Changelog
+
+### 4.0.0 (2025‐08‐04)
+* Breaking change: Minimum supported WordPress version is now 6.0 and the minimum PHP version is now 8.0. This is because wp-browser, which is used for testing no longer supports PHP 7. If you are using an older version of WordPress or PHP, please use the last 3.x version of this plugin.
+* Fix: Tested in WP 6.8
 
 ### 3.1.3 (2024‐07‐25)
 * Fix: Tested in WP 6.6

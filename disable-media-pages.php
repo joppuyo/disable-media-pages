@@ -5,7 +5,7 @@
  * Description: Plugin to disable "attachment" pages for WordPress media.
  * Author: Johannes Siipola
  * Author URI: https://siipo.la
- * Version: 3.1.3
+ * Version: 4.0.0
  * License: GPL v2 or later
  * Text Domain: disable-media-pages
  */
