@@ -106,7 +106,7 @@ jobs:
         run: npx webpack -p
 
       - name: Setup docker
-        run: docker compose up -d
+        run: docker compose up -d --wait
 
       - name: Create config file
         run: touch .env.testing

@@ -6,6 +6,13 @@ FROM wordpress:$wp_docker_tag
 
 ARG XDEBUG_VERSION
 
+# Older WordPress images are based on Debian bullseye, which is out of support. Its packages live on
+# archive.debian.org now and the security suite is gone, so drop that source and use the archive for the rest.
+RUN if grep -q bullseye /etc/os-release; then \
+      sed -i '/bullseye-security/d; s|deb.debian.org/debian |archive.debian.org/debian |g' /etc/apt/sources.list && \
+      echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99archive; \
+    fi
+
 # Add sudo in order to run wp-cli as the www-data user
 RUN apt-get update && apt-get install -y sudo less mariadb-client
 

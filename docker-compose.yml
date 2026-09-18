@@ -1,5 +1,3 @@
-version: '3.1'
-
 services:
 
   wordpress.test:
@@ -10,10 +8,13 @@ services:
         wp_docker_tag: '$WP_DOCKER_TAG'
         XDEBUG_VERSION: '$XDEBUG_VERSION'
     restart: always
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - 80:80
     environment:
-      - APACHE_RUN_USER="#33"
+      - APACHE_RUN_USER=#33
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_USER=exampleuser
       - WORDPRESS_DB_PASSWORD=examplepass
@@ -47,6 +48,13 @@ services:
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
       CHROMEDRIVER_EXTRA_ARGS: "--verbose"
+    # Ping over TCP on purpose. The temporary server used during first-boot initialisation only listens on the
+    # socket, so this stays unhealthy until the real server is accepting connections.
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uexampleuser", "-pexamplepass"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
     volumes:
       - db:/var/lib/mysql
   chromedriver:
