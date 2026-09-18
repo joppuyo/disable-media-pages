@@ -1,4 +1,4 @@
-<?php  //[STAMP] 6acfabecd4e38beecd75bf1b20bef8fb
+<?php  //[STAMP] 09b29b1bc315d4f5f87db5015575adbd
 // phpcs:ignoreFile
 namespace _generated;
 
@@ -8384,6 +8384,31 @@ trait AcceptanceTesterActions
      */
     public function canSeeThemeActivated(string $slug): void {
         $this->getScenario()->runStep(new \Codeception\Step\ConditionalAssertion('seeThemeActivated', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Activate a plugin on the plugins page by clicking its "Activate" row action and wait for the page to reload.
+     *
+     * wp-browser's activatePlugin() looks for the bulk action checkbox with an XPath that WordPress 7.1 broke
+     * (the checkbox cell changed from th to td). Clicking the row action link by id works on every version.
+     * @see \Helper\Acceptance::activatePluginByLink()
+     */
+    public function activatePluginByLink(string $pluginSlug): void {
+        $this->getScenario()->runStep(new \Codeception\Step\Action('activatePluginByLink', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Deactivate a plugin on the plugins page by clicking its "Deactivate" row action and wait for the page to reload.
+     * @see \Helper\Acceptance::deactivatePluginByLink()
+     */
+    public function deactivatePluginByLink(string $pluginSlug): void {
+        $this->getScenario()->runStep(new \Codeception\Step\Action('deactivatePluginByLink', func_get_args()));
     }
 
  

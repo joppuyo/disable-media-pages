@@ -22,8 +22,8 @@ class CliRestoreSlugsCest
         $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);
         $I->cli(['plugin', 'activate', 'disable-welcome-messages-and-tips']);
 
-        $I->cli(['theme', 'install', 'twentynineteen']);
-        $I->cli(['theme', 'activate', 'twentynineteen']);
+        $I->cli(['theme', 'install', 'twentytwentytwo']);
+        $I->cli(['theme', 'activate', 'twentytwentytwo']);
     }
 
     public function iUploadImage(AcceptanceTester $I)
@@ -50,7 +50,7 @@ class CliRestoreSlugsCest
     {
         $I->loadSessionSnapshot('login');
         $I->amOnPluginsPage();
-        $I->activatePlugin('disable-media-pages');
+        $I->activatePluginByLink('disable-media-pages');
     }
 
     public function iGoToMediaPageAgain(AcceptanceTester $I)
@@ -58,7 +58,7 @@ class CliRestoreSlugsCest
         $I->loadSessionSnapshot('login');
         $I->amOnPage('/example/');
         $I->dontSee('example');
-        $I->see('That page can’t be found.');
+        $I->see('This page could not be found');
     }
 
     public function iMangleExistingAttachments(AcceptanceTester $I)
@@ -96,7 +96,7 @@ class CliRestoreSlugsCest
     {
         $I->loadSessionSnapshot('login');
         $I->amOnPluginsPage();
-        $I->deactivatePlugin('disable-media-pages');
+        $I->deactivatePluginByLink('disable-media-pages');
     }
 
     public function iGoToMediaPageOnceMore(AcceptanceTester $I)

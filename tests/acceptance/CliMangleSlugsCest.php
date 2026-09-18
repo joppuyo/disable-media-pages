@@ -26,8 +26,8 @@ class CliMangleSlugsCest
         $I->cli(['plugin', 'install', 'disable-welcome-messages-and-tips']);
         $I->cli(['plugin', 'activate', 'disable-welcome-messages-and-tips']);
         
-        $I->cli(['theme', 'install', 'twentynineteen']);
-        $I->cli(['theme', 'activate', 'twentynineteen']);
+        $I->cli(['theme', 'install', 'twentytwentytwo']);
+        $I->cli(['theme', 'activate', 'twentytwentytwo']);
     }
 
     public function iUploadImage(AcceptanceTester $I)
@@ -54,7 +54,7 @@ class CliMangleSlugsCest
     {
         $I->loadSessionSnapshot('login');
         $I->amOnPluginsPage();
-        $I->activatePlugin('disable-media-pages');
+        $I->activatePluginByLink('disable-media-pages');
     }
 
     public function iGoToMediaPageAgain(AcceptanceTester $I)
@@ -62,7 +62,7 @@ class CliMangleSlugsCest
         $I->loadSessionSnapshot('login');
         $I->amOnPage('/example/');
         $I->dontSee('example');
-        $I->see('That page can’t be found.');
+        $I->see('This page could not be found');
     }
 
     public function iMangleExistingAttachments(AcceptanceTester $I)
@@ -77,6 +77,8 @@ class CliMangleSlugsCest
         $I->amOnAdminPage('post-new.php?post_type=page');
 
         if (version_compare($wp_version, '6.3', 'ge')) {
+            // The block editor renders the canvas iframe asynchronously, so wait for it before switching into it.
+            $I->waitForElement('iframe[name="editor-canvas"]', 30);
             $I->switchToIFrame("editor-canvas");
             // https://maslosoft.com/blog/2017/03/03/codeception-acceptance-filling-in-contenteditable/
             $I->waitForElementVisible('.editor-post-title__input', 30);
